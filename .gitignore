@@ -1,0 +1,12 @@
+accounts/
+config/security.yaml
+cache/
+logs/
+backup/
+tmp/
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+.DS_Store
