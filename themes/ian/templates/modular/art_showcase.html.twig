@@ -1,33 +1,33 @@
 <!-- Art Showcase Fullwidth Slider -->
 <section class="home-slider" style="padding-top: 40px; background-color: #ffffff;">
-    <div class="owl-carousel fullwidth-slider white o-flow-hidden">
-        {% for slide in page.header.slides %}
-        <div class="item bg-img" style="background-image: url('{{ page.media[slide.image].url }}');">
-            {% if slide.caption or page.header.link_url %}
-            <div class="full-cap-wraper light-color">
-                <div class="content-caption light-color">
-                    <div class="container">
-                        {% if slide.caption %}
-                        <h2 class="h2">{{ slide.caption }}</h2>
-                        {% endif %}
-                        {% if page.header.link_url %}
-                        <br>
-                        <div>
-                            <a href="{{ page.header.link_url }}" class="btn btn-md btn-white">
-                                {{ page.header.link_text|default('View Ian\'s Legacy Collection') }}
-                            </a>
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-        </div>
-        {% endfor %}
-    </div>
+<div class="owl-carousel fullwidth-slider white o-flow-hidden">
+{% for slide in page.header.slides %}
+<div class="item bg-img" style="background-image: url('{{ page.media[slide.image].url }}');">
+{% if slide.caption or slide.link_url %}
+<div class="full-cap-wraper light-color">
+<div class="content-caption light-color">
+<div class="container">
+{% if slide.caption %}
+<h2 class="h2">{{ slide.caption }}</h2>
+{% endif %}
+{% if slide.link_url %}
+<br>
+<div>
+<a href="{{ slide.link_url }}" class="btn btn-md btn-white">
+{{ slide.link_text|default('View Ian\'s Legacy Collection') }}
+</a>
+</div>
+{% endif %}
+</div>
+</div>
+</div>
+{% endif %}
+</div>
+{% endfor %}
+</div>
 </section>
 <!-- End Art Showcase Fullwidth Slider -->
 
 {% block bottom %}
-    {% do assets.addJs('theme://js/plugin/owl.carousel.min.js', {'priority':69, 'group':'bottom'}) %}
+{% do assets.addJs('theme://js/plugin/owl.carousel.min.js', {'priority':69, 'group':'bottom'}) %}
 {% endblock %}
