@@ -1,0 +1,25 @@
+
+<div class="container">
+    {% for feature in page.header.features %}
+       {% set cols = 12/loop.length %} 
+           <div class="col-xs-12 col-sm-6 col-md-{{ cols }}">
+                <div class="box-content thumbnail text-center">
+                    <a href="{{ feature.url }}" class="item-image">
+                        {{ page.media[feature.picture ].cropResize(640, 640).html(feature.text,feature.text,'img-responsive') }}
+                        <h3>
+                            <span>{{ feature.header }}</span><br>
+                            <small>{{ feature.subheader }}</small>
+                        </h3>
+                    </a>
+                    <div class="caption text-left">
+                        <a href="{{ feature.url }}">
+                        {{ feature.text }}
+                        </a>
+                    </div>
+                </div>
+            </div>      
+     {% endfor %}
+
+<div class="clearfix"></div>
+<div style="padding:1em;">{{ content }} </div>
+</div>

@@ -1,0 +1,37 @@
+
+
+
+<div class="container {{ page.header.class }}">
+<h2>{{ page.header.title }}</h2>
+
+{% set myindex = 0 %}
+{% for number in page.content|split('<hr />') %}
+{% set myindex = loop.index %}
+{% endfor %}
+
+    
+{% set mycols = 0 %}    
+{% if myindex == 2 %}
+{% set mycols = 6 %}
+{% endif %}
+{% if myindex == 3 %}
+{% set mycols = 4 %}
+{% endif %}
+{% if myindex == 4 %}
+{% set mycols = 3 %}
+{% endif %}    
+    
+  
+        <div class="row">
+            {% for column in page.content|split('<hr />') %}
+            <div class="col-md-{{ mycols }}">{{ column }}</div>
+            {% endfor %}
+        </div>
+
+    
+</div>
+
+
+
+
+

@@ -1,0 +1,110 @@
+{% extends 'default.html.twig' %}
+
+{% block content %}
+{% if page.media.images %}
+{% set blog_image = page.media.images|first %}
+{% else %}
+{% set blog_image = page.find('/images').media['default-page.jpg'] %}
+{% endif %}
+
+        <section class="full-screen-intro bg-img dark-bg" style="background-image: url({{ blog_image.url }})">
+                    <div class="full-cap-wraper">
+                        <div class="content-caption light-color">
+                            <div class="container"> 
+                                <h1 class="h1">{{ page.title }}</h1>
+                            
+                                <div class="intro-scroll-down">
+                                    <a class="scroll-down" href="#about">
+                                        <span class="mouse">
+                                            <span class="mouse-dot"></span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+        <div id="about"></div>
+        <div class="clearfix"></div>
+        <section class="ptb ptb-sm-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+
+
+                        <script>
+                            $(function() {
+                                var currentPage = 0;
+
+                                $(document).on('click tap', '.js__load-more', function(event) {
+                                   $.getJSON(window.location + '/page:' + (currentPage + 1))
+                                    .success(function(response) {
+                                        currentPage = parseInt(response.page);
+
+                                        response.messages.forEach(function(message) {
+                                            
+                                            
+                                            if (message.city) {
+                                                $('.js__messages-container').append('<div class="pb-15">'
+                                                     + message.text  + '<p><i>' + message.author + ', ' + message.city + '</p></i>');
+                                            } else {
+                                                $('.js__messages-container').append('<div class="pb-15">'
+                                                     + message.text  + '<p><i>' + message.author + '</p></i>');
+                                            }
+                                        })
+
+                                        var totalRetrieved = response.itemsPerPage * (parseInt(response.page) + 1);
+
+                                        $('.totalRetrieved').html(totalRetrieved);
+                                        $('.totalAvailable').html(response.totalAvailable);
+
+                                        if (totalRetrieved >= response.totalAvailable) {
+                                            $('.totalRetrieved').html($('.totalAvailable').html());
+                                            $('.js__load-more').hide();
+                                        }
+                                    })
+                                    .error(function() {
+                                        alert('Unexpected error');
+                                    });
+                                });
+                            });
+                        </script>
+
+                        {% if grav.twig.guestbookMessages|length %}
+
+                            <h3>{{'PLUGIN_GUESTBOOK.MESSAGES'|t}}</h3>
+
+                            <div class="js__messages-container">
+                                {% for message in grav.twig.guestbookMessages.messages %}
+                                <div class="pb-15">
+                                {{message.text|e}}
+                                <p><i>{{message.author|e}}{% if message.city %}, {{message.city|e}}{% endif %}</i></p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <p class="center">Showing <span class="totalRetrieved">{{grav.twig.guestbookMessages.totalRetrieved}}</span> messages of <span class="totalAvailable">{{grav.twig.guestbookMessages.totalAvailable}}</span></p>
+                    
+                            {% if grav.twig.guestbookMessages.totalRetrieved < grav.twig.guestbookMessages.totalAvailable %}
+                                <form>
+                                    <div class="buttons">
+                                        <button type="button" class="btn btn-md btn-black js__load-more">
+                                            Load more
+                                        </button>
+                                    </div>
+                                </form>
+                            {% endif %}
+
+
+                        {% endif %}
+                                        
+                    <br/><br/>
+                    {{ page.content }}
+
+                    {% include "forms/form.html.twig" %}    
+                
+                </div>
+                </div>
+
+            </div>
+        </section>
+{% endblock %}

@@ -1,0 +1,41 @@
+        <!-- CTA -->
+        <section class="ptb ptb-sm-80">
+            <div class="container">
+
+                {% if page.header.heading %}
+                <div class="row">
+                    <div class="col-md-12 text-center pb-60">
+                        <h2 class="no-transform">{{ page.header.heading }}</h2>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!--CTA Items -->
+                <div class="row">
+                    {% for item in page.header.cta %}
+                        <div class="item col-lg-6 col-md-6 col-sm-6 mb-sm-30">
+                            <div class="team-item nf-col-padding">
+                                <a href="{{ item.url }}">
+                                    <div class="team-item-img">
+                                        <img src="{{ page.media[item.image].cropResize(800,800).url }}" alt="" />
+                                        <div class="team-item-detail">
+                                            <div class="team-item-detail-inner light-color">
+                                                <h5>{{ item.heading }}</h5>
+                                                <p>{{ item.pitch }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                    <div class="team-item-info">
+                                        <h5>{{ item.heading }}</h5>
+                                        <p class=""><a href="{{ item.url }}">{{ item.link_text }}</a></p>
+                                    </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                <!--End CTA Items --->
+
+            </div>
+        </section>
+        <!-- End CTA -->

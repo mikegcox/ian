@@ -1,0 +1,9 @@
+enabled: true
+test_mode: false
+payment:
+  methods:
+    paypal_express:
+      name: 'PayPal Express'
+      username: ian_api1.thousandislandsbooks.com
+      password: 2T86ZXM27YQ6GLZV
+      signature: AFcWxV21C7fd0v3bYYYRCpSSRl31AEVHWZZlCFkv0EZko0NUmxKVr8Pe

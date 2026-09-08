@@ -1,0 +1,104 @@
+{# Legacy checkout form renderer to avoid Form v8 rendering #}
+
+<form name="checkout" action="{{ page.url }}" method="POST" class="">
+
+  <div class="form-field">
+    <div class="form-label"><label class="inline"></label></div>
+    <div class="form-data" data-grav-field="display" data-grav-disabled="true" data-grav-default="null">
+      <div class="form-display-wrapper">
+        <h2>Your Personal Details</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <div class="form-label">
+      <label class="inline">
+        Your first and last name <span class="required">*</span>
+      </label>
+    </div>
+    <div class="form-data" data-grav-field="text" data-grav-disabled="true" data-grav-default="null">
+      <div class="form-input-wrapper">
+        <input name="data[firstname]" value="" type="text" class="js__billing__firstname form-control" required="required">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <div class="form-label">
+      <label class="inline">
+        Email Address <span class="required">*</span>
+      </label>
+    </div>
+    <div class="form-data" data-grav-field="email" data-grav-disabled="true" data-grav-default="null">
+      <div class="form-input-wrapper">
+        <input name="data[email]" value="" type="email" class="js__billing__email form-control" required="required">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-field js__checkout-choose-shipping-block">
+    <div class="form-label" style="display:none;">
+      <label class="inline" for="js__shipping__method">
+        Please select how you would like your products to be delivered.
+      </label>
+    </div>
+    <div class="form-data" data-grav-selectize="[]" data-grav-field="select" data-grav-disabled="true" data-grav-default="null">
+      <div class="form-select-wrapper">
+        <select name="data[shipping_method]" class="js__shipping__method form-control" id="js__shipping__method" style="display:none;">
+          <option value="Canada and USA will be shipped Priority Post" selected="selected">
+            Canada and USA will be shipped Priority Post
+          </option>
+        </select>
+        <div class="js__single-shipping-method-information">Canada and USA will be shipped Priority Post - $ 0</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <div class="form-label"><label class="inline"></label></div>
+    <div class="form-data" data-grav-field="display" data-grav-disabled="true" data-grav-default="null">
+      <div class="form-display-wrapper">
+        <p>For international shipments we will notify you of the best options and costs.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-field js__checkout-choose-payment-block-title" style="display:none;">
+    <div class="form-label"><label class="inline"></label></div>
+    <div class="form-data" data-grav-field="display" data-grav-disabled="true" data-grav-default="null">
+      <div class="form-display-wrapper">
+        <h2>Payment Method</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-field js__checkout-choose-payment-block" style="display:none;">
+    <div class="form-label">
+      <label class="inline" for="js__payment__method">Please select a payment method</label>
+    </div>
+    <div class="form-data" data-grav-selectize="[]" data-grav-field="select" data-grav-disabled="true" data-grav-default="null">
+      <div class="form-select-wrapper">
+        <select name="data[payment_method]" class="js__payment__method form-control" id="js__payment__method">
+          <option value="paypal_express">PayPal Express</option>
+        </select>
+      </div>
+    </div>
+  </div>
+<input type="hidden" name="data[agree_to_terms]" value="1">
+
+  <input type="hidden" name="__form-name__" value="checkout">
+
+  {# Nonce: critical. If nonce_field() doesn't exist, replace this line (see below). #}
+  {{ nonce_field('form', 'form-nonce')|raw }}
+
+  {# Optional: keep this if ShoppingCart checks it; otherwise remove. #}
+  <input type="hidden" name="__unique_form_id__" value="{{ (page.route ~ '-' ~ page.modified)|md5 }}">
+
+  <div class="buttons">
+    <button class="button btn btn-md btn-black" type="submit">
+      Go on and pay
+    </button>
+  </div>
+
+</form>

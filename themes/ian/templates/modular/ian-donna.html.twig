@@ -1,0 +1,14 @@
+{% set blog_image = page.media.images|first %} 
+        <section class="{% if page.content %}overlay-dark{% endif %} light-color ptb-160" style="background-image: url('{{ blog_image.url }}');background-repeat: no-repeat;background-position: center; ">
+            <div class="container">
+                <div class="row">
+                    
+                    <div class="col-md-3 col-md-offset-3">
+                        {{ page.header.ian }}
+                    </div>
+                    <div class="col-md-3">
+                        {{ page.header.donna }}
+                    </div>
+                </div>
+            </div>
+        </section>

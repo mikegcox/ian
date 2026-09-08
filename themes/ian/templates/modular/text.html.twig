@@ -1,0 +1,17 @@
+
+
+
+<div class="container {{ page.header.class }}">
+<h2>{{ page.header.title }}</h2>
+{{ content }}
+
+{% if page.header.download_link %}
+<a href="{{ page.url }}/{{page.header.download_link }}" class="btn btn-primary btn-lg">{{ page.header.download_link_text }}</a>
+
+{% endif %}
+</div>
+
+
+
+
+

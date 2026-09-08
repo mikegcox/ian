@@ -1,0 +1,33 @@
+<!-- Mailing List Subscribe -->
+<section class="ptb-60 ptb-sm-80 bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center pb-30">
+                <h3 class="no-transform">{{ page.header.heading|default('Join Our Mailing List') }}</h3>
+                {% if page.header.subheading %}
+                <p class="mt-15">{{ page.header.subheading }}</p>
+                {% endif %}
+            </div>
+        </div>
+        <form action="https://notifications.thousandislandslife.com/subscribe" method="POST" accept-charset="utf-8">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 mb-sm-15">
+                    <input class="input-md form-full" type="text" name="name" placeholder="Name">
+                </div>
+                <div class="col-md-4 col-sm-4 mb-sm-15">
+                    <input class="input-md form-full" type="email" name="email" placeholder="Email Address">
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <button class="btn btn-md btn-black form-full" type="submit">Subscribe</button>
+                </div>
+            </div>
+            <div style="display:none;">
+                <label for="hp">HP</label>
+                <input type="text" name="hp" id="hp"/>
+            </div>
+            <input type="hidden" name="list" value="2T9Kcfn8926u9J892RD892teCkBg"/>
+            <input type="hidden" name="subform" value="yes"/>
+        </form>
+    </div>
+</section>
+<!-- End Mailing List Subscribe -->

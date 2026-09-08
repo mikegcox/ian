@@ -1,0 +1,23 @@
+enabled: true
+dropdown:
+  enabled: true
+social:
+  email: lyne@1000islandsphotoart.com
+  facebook: 'https://www.facebook.com/1000islandsphotoart'
+  instagram: 'https://www.instagram.com/1000islandsphotoart_'
+  youtube: 'https://www.youtube.com/@IanCoristine/videos'
+pricing:
+  print_sm_cad: 150
+  print_sm_usd: 110
+  print_lg_cad: 195
+  print_lg_usd: 145
+  canvas_md_cad: 295
+  canvas_md_usd: 220
+  canvas_lg_cad: 395
+  canvas_lg_usd: 295
+streams:
+  schemes:
+    theme:
+      type: ReadOnlyStream
+      paths:
+        - user/themes/ian

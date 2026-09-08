@@ -1,0 +1,26 @@
+enabled: true
+dropdown:
+  enabled: true
+
+social:
+  email: lyne@1000islandsphotoart.com
+  facebook: ''
+  instagram: ''
+  youtube: ''
+
+pricing:
+  print_sm_cad: 205
+  print_sm_usd: 150
+  print_lg_cad: 265
+  print_lg_usd: 195
+  canvas_md_cad: 765
+  canvas_md_usd: 560
+  canvas_lg_cad: 925
+  canvas_lg_usd: 680
+
+streams:
+  schemes:
+    theme:
+      type: ReadOnlyStream
+      paths:
+        - user/themes/ian

@@ -1,0 +1,30 @@
+        <footer class="footer pt-80">
+            <div class="container text-center">
+                    <ul class="social">
+                        {% if theme_config.social.email %}
+                        <li><a href="mailto:{{ theme_config.social.email }}" class="social fa fa-envelope"></a></li>
+                        {% endif %}
+                        {% if theme_config.social.facebook %}
+                        <li><a href="{{ theme_config.social.facebook }}" class="social fa fa-facebook"></a></li>
+                        {% endif %}
+                        {% if theme_config.social.instagram %}
+                        <li><a href="{{ theme_config.social.instagram }}" class="social fa fa-instagram"></a></li>
+                        {% endif %}
+                        {% if theme_config.social.youtube %}
+                        <li><a href="{{ theme_config.social.youtube }}" class="social fa fa-youtube"></a></li>
+                        {% endif %}
+                        {% if theme_config.social.twitter %}
+                        <li><a href="{{ theme_config.social.twitter }}" class="social fa fa-twitter"></a></li>
+                        {% endif %}
+                        {% if theme_config.social.linkedin %}
+                        <li><a href="{{ theme_config.social.linkedin }}" class="social fa fa-linkedin"></a></li>
+                        {% endif %}
+                        <li><img src="{{ base_url }}/images/dxo.png" title="dxo" /></li>
+                    </ul>
+                    <div>
+                        <br />
+                        &copy; {{ "now"|date("Y") }} <b>{{ site.title }}</b>
+                    </div>
+            </div>
+            <!-- End Copyright Bar -->
+        </footer>

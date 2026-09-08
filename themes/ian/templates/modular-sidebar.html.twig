@@ -1,0 +1,71 @@
+{% extends 'partials/base.html.twig' %}
+
+{% set show_onpage_menu = header.onpage_menu == true or header.onpage_menu is null %}
+{% macro pageLinkName(text) %}{{ text|lower|replace({' ':'_'}) }}{% endmacro %}
+
+{% block javascripts %}
+    {% if show_onpage_menu %}
+        {% do assets.add('theme://js/singlePageNav.min.js') %}
+    {% endif %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block content %}
+{% if page.header.show_parallax %}
+            {% set blog_image = page.media.images|first %}
+            <div class="parallax parallax-1" style="background-image:url({{ blog_image.url }});">
+				<span class="parallax-overlay"></span>
+
+				<div class="container parallax-content">
+
+					<div class="row">
+						<div class="col-md-12 col-sm-12">
+                            {{ page.content }}
+						</div>
+					</div>
+
+				</div>
+			</div>
+{% else %}
+<div class="container">
+ {{ page.content }}
+</div>
+{% endif %}
+
+<div class="container" style="margin-top:1em;">
+    <div class="row">
+        <div class="col-md-3"> 
+            <ul class="side-nav list-group" id="sidebar-nav">
+                        <li class="list-group-item active"><a href="{{ page.url }}">{{ page.menu }}</a></li>
+                        {% for p in page.children %}
+                        {% set current_page = (p.active or p.activeChild) ? 'active' : '' %}
+                        <li class="list-group-item {{ current_page }}">
+                            <a href="{{ p.url }}">
+                                {{ p.menu }}
+                            </a>
+                        </li>
+                        {% endfor %}
+
+                        {% if page.header.menuitems %}
+                        {% for m in page.header.menuitems %}
+                        <li  class="list-group-item">
+                            <a href="{{ m.url }}">
+                                {{ m.text }}
+                            </a>
+                        </li>
+                        {% endfor %}
+            </ul>       
+            {% else %}
+            </ul>
+            {% endif %}
+        </div>
+        <div class="col-md-9 col-sm-9"> 
+    {% for module in page.collection() %}
+        <div id="{{ _self.pageLinkName(module.menu) }}" class="section-cotent"></div>
+        {{ module.content }}
+    {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

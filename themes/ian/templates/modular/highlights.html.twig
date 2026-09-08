@@ -1,0 +1,25 @@
+        <div class="highlights">
+        <div class="container">
+			<div class="{{ page.header.class }}">
+			{{ content }}
+			</div> <!-- /.title-section -->
+            <div class="row">
+            
+                {% for feature in page.header.features %}
+                <div class="col-md-3 col-sm-6">
+                    <div class="service-item">
+                        <div class="service-header">
+                            <i class="fa fa-{{ feature.icon }}"></i>
+                            <h3>{{ feature.header }}</h3>
+                        </div>
+                        <div class="service-description">
+                        <a href="#{{ feature.url }}">{{ feature.text }}</a>
+                        </div>
+                    </div> <!-- /.service-item -->
+                </div> <!-- /.col-md-3 -->
+                {% endfor %}
+                
+
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+        </div>

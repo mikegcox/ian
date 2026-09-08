@@ -1,0 +1,57 @@
+title: Shopping Cart Product
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        banners:
+          type: tab
+          title: Shopping Cart Product
+
+          fields:
+            header.title:
+              type: text
+              autofocus: true
+              label: PLUGIN_ADMIN.TITLE
+            header.price: 
+              type: text
+              label: Price
+              size: small
+              validate:
+                type: int
+                min: 0
+                max: 500
+            header.gallery_url: 
+              type: pages
+              label: Link to Portfolio page
+              size: medium   
+            header.pictures:
+              name: pictures
+              type: list
+              label: Banner Images and Titles
+              fields:
+                .picture:
+                  type: pagemediaselect
+                  label: Image Filename
+                .title:
+                  type: text
+                  label: Text
+            content:
+              type: markdown
+              label: Extra content to appear under the titles
+              validate:
+                type: textarea
+            
+            uploads:
+              type: pagemedia
+              label: Pictures available for this page - Click empty space to upload.   
+            name:
+              type: select
+              label: Sold-Out Switch template
+              help: Choose Shoppingcart Sold Out when you want a Sold Out singn to appear.
+              default: default
+              'data-options@': '\Grav\Common\Page\Pages::pageTypes'  
+

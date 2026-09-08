@@ -1,0 +1,73 @@
+{% set shoppingcart_image = page.media.images|first %}
+{% set image_size_product = config.plugins.shoppingcart.ui.image_size_product %}
+
+
+
+<div class="container">
+    {% include 'partials/shoppingcart_core_cart.html.twig' %}
+    <div id="shoppingcart-detail" class="col-md-4 col-sm-6 mb-30">
+        <div class="team-item">
+            <div class="team-item-img shoppingcart-thumb">
+                 {% if uri.query(picture) %}
+                 {{ blog_image.cropResize(image_size_product, image_size_product).html(page.header.title, 'shoppingcart-thumb-image') }}
+                 {% else %}
+                 <br><br><br>
+                 {% endif %}
+                <span class="shoppingcart-price">
+                    {% include 'partials/shoppingcart_core_price.html.twig' with { price: site.print_price_lg } %}
+                </span>
+            </div>
+            <div class="team-item-info">
+                <h5>Giclée print</h5>
+            </div>
+            <div class="shoppingcart-quantity-chooser">
+                <label for="js__shoppingcart__quantity">{{ 'PLUGIN_SHOPPINGCART.QUANTITY'|t }}</label>
+                <input type="text" class="small" id="js__shoppingcart__quantity" placeholder="1" value="1" />
+            </div>
+            {% set product = { 'title': uri.query('picture') ~ ' ' ~ page.parent.header.title, 'id': md5(uri.query('picture')), 'price': site.print_price_lg, 'image': blog_image, 'url': page.url } %}
+            {% include 'partials/shoppingcart_core_add_to_cart.html.twig' with { product: product } %}
+        </div>
+    </div>
+    <div id="shoppingcart-detail" class="col-md-4 col-sm-6 mb-30">
+        <div class="team-item">
+            <div class="team-item-img shoppingcart-thumb">
+                 {% if uri.query(picture) %}
+                 {{ blog_image.cropResize(image_size_product, image_size_product).html(page.header.title, 'shoppingcart-thumb-image') }}
+                 {% else %}
+                 <br><br><br>
+                 {% endif %}
+                <span class="shoppingcart-price">
+                    {% include 'partials/shoppingcart_core_price.html.twig' with { price: site.metallic_paper } %}
+                </span>
+            </div>
+            <div class="team-item-info">
+                <h5>Metallic Paper</h5>
+                <p class="">Have your picture printed on metallic paper for $25 extra</p>
+                <a class="btn btn-md btn-black" href="{{ page.url }}/metallic?picture={{ uri.query('picture') }}"><i class="fa fa-email"></i>Click here to add</a>
+            </div>
+        </div>
+    </div>
+        <div id="shoppingcart-detail" class="col-md-4 col-sm-6 mb-30">
+        <div class="team-item">
+            <div class="team-item-img shoppingcart-thumb">
+                 {% if uri.query(picture) %}
+                 {{ blog_image.cropResize(image_size_product, image_size_product).html(page.header.title, 'shoppingcart-thumb-image') }}
+                 {% else %}
+                 <br><br><br>
+                 {% endif %}
+
+            </div>
+            <div class="team-item-info">
+                <h5>For Digital Use</h5>
+                <p class="">Please <a href="mailto:lyne@1000islandsphotoart.com?subject={{ uri.query('picture') }}">email us</a> for a quote.</p>
+                <a class="btn btn-md btn-black" href="mailto:lyne@1000islandsphotoart.com?subject={{ uri.query('picture') }}"><i class="fa fa-email"></i>Email us</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

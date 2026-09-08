@@ -1,0 +1,49 @@
+title: '1000 Islands Photo Art'
+default_lang: en
+author:
+  name: 'Lyne Roberge'
+  email: lyne@1000islandsphotoart.com
+  phone: 613-498-7155
+  address: '1 East Fulford Place'
+  city: Brockville
+  province: Ontario
+  postal: 'K6V 2Z9'
+  show_address: false
+taxonomies:
+  - category
+  - tag
+  - month
+  - author
+  - media
+  - portfolio
+metadata:
+  description: 'Aerial and landscape photography of the Thousand Islands by DxO Image Master Ian Coristine.'
+summary:
+  enabled: true
+  format: short
+  size: 300
+  delimiter: '==='
+redirects: null
+routes: null
+blog:
+  route: /blog
+logos:
+  top_logo: tipa-logo.png
+  menu_logo: tipa-logo-50.png
+  footer_logo: tipa-footer-logo.png
+footer_photo: 1000islands.jpg
+social:
+  facebook: 'https://www.facebook.com/1000islandsphotoart'
+print_price_sm: 150
+print_price_lg: 195
+metallic_paper: 25
+print_text_sm: '13" x 19" giclée print'
+print_text_lg: '17" x 22" giclée print'
+print_text_generic: 'Custom sizes available on art paper or canvas by special order.'
+gallery_url_7: portfolio/books-vii
+gallery_url_6: book-vi
+gallery_url_5: portfolio/books-v
+gallery_url_4: portfolio/books-iv
+gallery_url_3: portfolio/books-iii
+gallery_url_2: portfolio/books-ii
+gallery_url_1: portfolio/books-i

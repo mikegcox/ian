@@ -1,0 +1,75 @@
+{% embed 'partials/base.html.twig' %}
+
+	{% set collection = page.collection() %}
+
+	{% block content %}
+            {% if page.media.images %}
+            {% set blog_image = page.media.images|first %}
+            {% else %}
+            {% set blog_image = page.find('/images').media['default-page.jpg'] %}
+            {% endif %}
+			{% if blog_image %}
+        <section class="full-screen-intro bg-img dark-bg" style="background-image: url({{ blog_image.url }})">
+                    <div class="full-cap-wraper">
+                        <div class="content-caption light-color">
+                            <div class="container"> 
+                                <h1 class="h1">{{ page.title }}</h1>
+                                                {{ content }}
+                                <div class="intro-scroll-down">
+                                    <a class="scroll-down" href="#about">
+                                        <span class="mouse">
+                                            <span class="mouse-dot"></span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+        <div id="about"></div>
+        <div class="clearfix"></div>
+            {% endif %}
+
+<!-- CONTENT -->
+    <section class="ptb ptb-sm-80">
+        <div class="container">
+            <div class="row">
+                <!-- Post Item -->
+                <div class="col-lg-9 col-md-9 container-grid">
+				{% for child in collection %}
+                    <div class="nf-item {% for tag in child.taxonomy.media %}{{ tag|replace({' ':'-'}) }}{% endfor %}">
+			        {% include 'partials/media_item.html.twig' with {'page':child, 'truncate':true} %}
+                    </div>
+                {% endfor %}
+        
+                </div>
+                <!-- BLOG SIDEBAR -->
+                <div class="col-lg-3 col-md-3 mt-sm-60">
+                
+
+
+
+
+{% if config.plugins.archives.enabled %}
+<div class="sidebar-widget">
+    <h5>Filter</h5>
+    <hr>
+	{% include 'partials/media_menu.html.twig' with {'taxonomy':'media'} %}
+</div>
+{% endif %}  
+                    
+<div class="sidebar-widget">
+	{% include 'partials/special.html.twig' %}
+</div>                    
+                    
+                </div>
+                <!-- /BLOG SIDEBAR -->
+            </div>
+        </div>
+    </section>
+
+	{% endblock %}
+
+{% endembed %}
+
+

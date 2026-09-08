@@ -1,0 +1,24 @@
+enabled: true
+from: lyne@1000islandsphotoart.com
+from_name: '1000 Islands Photo Art Website'
+to: lyne@1000islandsphotoart.com
+to_name: 'Lyne Roberge'
+mailer:
+  engine: smtp
+  smtp:
+    server: email-smtp.us-east-1.amazonaws.com
+    port: 587
+    encryption: tls
+    user: 
+    password: 
+  sendmail:
+    bin: /usr/sbin/sendmail
+content_type: text/html
+debug: true
+queue:
+  enabled: false
+  flush_frequency: '* * * * *'
+  flush_msg_limit: 10
+  flush_time_limit: 100
+cc: mcox@mcox.ca
+cc_name: 'Mike Cox'

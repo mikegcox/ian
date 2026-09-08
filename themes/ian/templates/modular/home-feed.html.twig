@@ -1,0 +1,59 @@
+
+<div class="container">
+    <h3>The latest Bench Racing Notes</h3>
+    {% for feature in page.find('/notes').children.order('date', 'desc').slice(0, 3) %}
+    {% set blog_image = feature.media.images|first %}
+           <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="box-content thumbnail text-center">
+                    <a href="{{ feature.url }}" class="item-image">
+                        {{ blog_image.cropZoom(640, 480) }}
+                        <h3>
+                            <span>{{ feature.title }}</span><br>
+                            <small>{{ feature.header.date|date("M-d Y") }} by: {% for tag in feature.taxonomy.author %}{{ tag }}{% endfor %}</small>
+                        </h3>
+                    </a>
+                    <div class="caption text-left">
+                        <a href="{{ feature.url }}">
+                        {{ feature.content|truncate(70)|striptags }}
+                        </a>
+                    </div>
+                </div>
+            </div>      
+     {% endfor %}
+    {% set newest_image = '' %}
+    {% set newest_image_timestamp = 0 %}
+    {% set newest_image_folder = '' %}
+
+    {% for album in page.find('/motography').children %}
+      {% for image in album.media.images %}
+        {% if image.get('modified') > newest_image_timestamp %}
+          {% set newest_image_timestamp = image.get('modified') %}
+          {% set newest_image_folder = album.url %}
+          {% set newest_image = image %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+               <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="box-content thumbnail text-center">
+                    <a href="{{ newest_image_folder }}" class="item-image">
+                        {{ newest_image.cropZoom(640, 480) }}
+                        <h3>
+                            <span>Most recent from Motography</span><br>
+                            <small>{{ newest_image_timestamp|date("M-d Y") }}</small>
+                        </h3>
+                    </a>
+                    <div class="caption text-left">
+                        <a href="{{ newest_image_folder }}">
+                            {{ page.find(newest_image_folder).title }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+<div class="clearfix"></div>
+<div style="padding:1em;">{{ content }} </div>
+    
+
+    
+</div>
+
+

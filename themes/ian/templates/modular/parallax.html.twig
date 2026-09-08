@@ -1,0 +1,14 @@
+            {% set blog_image = page.media.images|first %}
+            <div class="parallax parallax-1" style="background-image:url({{ blog_image.url }});">
+				<span class="parallax-overlay"></span>
+
+				<div class="container parallax-content">
+
+					<div class="row">
+						<div class="col-md-12 col-sm-12">
+                            {{ content }}
+						</div>
+					</div>
+
+				</div>
+			</div>

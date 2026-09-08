@@ -1,0 +1,179 @@
+{% extends 'partials/shoppingcart_core_base.html.twig' %}
+
+{% block content %}
+
+{# ---- Variables ---- #}
+{% set picture = uri.query('picture') %}
+{% set blog_image = page.parent.media[picture] %}
+{% set top_image = page.find('/images').media['banner-print-checkout2.jpg'] %}
+{% set currency = uri.query('currency') ? uri.query('currency') : 'cad' %}
+{% set pricing = theme_config.pricing %}
+
+{# ---- Prices by currency ---- #}
+{% if currency == 'usd' %}
+    {% set price_print_sm    = pricing.print_sm_usd %}
+    {% set price_print_lg    = pricing.print_lg_usd %}
+    {% set price_canvas_md   = pricing.canvas_md_usd %}
+    {% set price_canvas_lg   = pricing.canvas_lg_usd %}
+    {% set currency_label    = 'USD' %}
+    {% set currency_symbol   = '$' %}
+{% else %}
+    {% set price_print_sm    = pricing.print_sm_cad %}
+    {% set price_print_lg    = pricing.print_lg_cad %}
+    {% set price_canvas_md   = pricing.canvas_md_cad %}
+    {% set price_canvas_lg   = pricing.canvas_lg_cad %}
+    {% set currency_label    = 'CAD' %}
+    {% set currency_symbol   = '$' %}
+{% endif %}
+
+{# ---- Toggle URL helpers ---- #}
+{% set toggle_cad_url = page.url ~ '?picture=' ~ picture ~ '&currency=cad' %}
+{% set toggle_usd_url = page.url ~ '?picture=' ~ picture ~ '&currency=usd' %}
+
+{# ---- Banner ---- #}
+<section class="dark-bg">
+    <div class="bg-img pt-80 pb-60" style="background-image: url('{{ top_image.url }}');">
+        <div class="content-caption light-color">
+            <div class="container">
+                <div class="row title">
+                    <h2 class="h2">{{ page.parent.title }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="clearfix"></div>
+
+<script>
+(function() {
+    ShoppingCart.currentPageIsProducts = true;
+}());
+</script>
+
+{{ parent() }}
+
+{# ---- Product Section ---- #}
+<section id="shop-item" class="ptb-60 ptb-sm-80">
+    <div class="container">
+        {% include 'partials/shoppingcart_core_cart.html.twig' %}
+
+        <div class="row">
+
+            {# ---- LEFT: Photo ---- #}
+            <div class="col-md-5 mb-sm-30">
+                {% if picture and blog_image %}
+                    <a href="{{ blog_image.url }}" class="cbox-single" title="{{ picture }}">
+                        <div style="background:#c2b49a; padding:20px; display:inline-block; width:100%;">
+                            <div style="background:#ffffff; padding:12px; box-shadow: 2px 2px 8px rgba(0,0,0,0.15);">
+                                {{ blog_image.cropResize(600, 600).html(picture, 'img-responsive') }}
+                            </div>
+                        </div>
+                    </a>
+                    <p class="text-center mt-15"><small><i class="fa fa-search-plus"></i> Click image to enlarge</small></p>
+                {% else %}
+                    <div style="height:400px;background:#f5f5f5;"></div>
+                {% endif %}
+            </div>
+
+            {# ---- RIGHT: Purchase Options ---- #}
+            <div class="col-md-7">
+
+                {# Currency Toggle #}
+                <div class="mb-30">
+                    <strong>Currency: </strong>
+                    <a href="{{ toggle_cad_url }}" class="btn btn-xs {% if currency == 'cad' %}btn-black{% else %}btn-default{% endif %}">CAD</a>
+                    <a href="{{ toggle_usd_url }}" class="btn btn-xs {% if currency == 'usd' %}btn-black{% else %}btn-default{% endif %}">USD</a>
+                </div>
+
+                {# ---- Options Table ---- #}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Format</th>
+                            <th>Size</th>
+                            <th>Price ({{ currency_label }})</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {# 13x19 Giclée #}
+                        <tr>
+                            <td><strong>Giclée</strong> <small>(unframed)</small></td>
+                            <td nowrap>13&quot; x 19&quot;</td>
+                            <td nowrap>{{ currency_symbol }}{{ price_print_sm }}</td>
+                            <td>
+                                <a href="buy/cart?size=print_sm&currency={{ currency }}&price={{ price_print_sm }}&picture={{ picture }}"
+                                   class="btn btn-md btn-black">
+                                    <i class="fa fa-shopping-cart"></i> Buy
+                                </a>
+                            </td>
+                        </tr>
+
+                        {# 17x22 Giclée #}
+                        <tr>
+                            <td><strong>Giclée</strong> <small>(unframed)</small></td>
+                            <td nowrap>17&quot; x 22&quot;</td>
+                            <td nowrap>{{ currency_symbol }}{{ price_print_lg }}</td>
+                            <td>
+                                <a href="buy/cart?size=print_lg&currency={{ currency }}&price={{ price_print_lg }}&picture={{ picture }}"
+                                   class="btn btn-md btn-black">
+                                    <i class="fa fa-shopping-cart"></i> Buy
+                                </a>
+                            </td>
+                        </tr>
+
+                        {# 24x36 Canvas #}
+                        <tr>
+                            <td><strong>Canvas</strong> <small>(ready to hang)</small></td>
+                            <td nowrap>24&quot; x 36&quot;</td>
+                            <td nowrap>{{ currency_symbol }}{{ price_canvas_md }}</td>
+                            <td>
+                                <a href="buy/cart?size=canvas_md&currency={{ currency }}&price={{ price_canvas_md }}&picture={{ picture }}"
+                                   class="btn btn-md btn-black">
+                                    <i class="fa fa-shopping-cart"></i> Buy
+                                </a>
+                            </td>
+                        </tr>
+
+                        {# 36x48 Canvas #}
+                        <tr>
+                            <td><strong>Canvas</strong> <small>(ready to hang)</small></td>
+                            <td nowrap>36&quot; x 48&quot;</td>
+                            <td nowrap>{{ currency_symbol }}{{ price_canvas_lg }}</td>
+                            <td>
+                                <a href="buy/cart?size=canvas_lg&currency={{ currency }}&price={{ price_canvas_lg }}&picture={{ picture }}"
+                                   class="btn btn-md btn-black">
+                                    <i class="fa fa-shopping-cart"></i> Buy
+                                </a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <p class="mt-15">
+                    <small>Canada and US shipping included. Custom sizes, mediums and framing available — <a href="mailto:{{ theme_config.social.email }}?subject=Custom order inquiry: {{ picture }}">Contact us</a>.</small>
+                </p>
+
+                <p>
+                    <small>For digital or commercial use — <a href="mailto:{{ theme_config.social.email }}?subject=Commercial use inquiry: {{ picture }}">Contact us</a>.</small>
+                </p>
+
+            </div>
+            {# End RIGHT #}
+
+        </div>
+        {# End row #}
+
+    </div>
+</section>
+<script>
+jQuery(document).ready(function() {
+    jQuery('a.cbox-single').colorbox({
+        maxWidth: "95%",
+        maxHeight: "95%"
+    });
+});
+</script>
+{% endblock %}

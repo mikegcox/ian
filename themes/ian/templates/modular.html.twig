@@ -1,0 +1,63 @@
+{% extends 'partials/base.html.twig' %}
+
+{% set show_onpage_menu = header.onpage_menu == true or header.onpage_menu is null %}
+{% set blog_image = page.media.images|first %}
+{% macro pageLinkName(text) %}{{ text|lower|replace({' ':'_'}) }}{% endmacro %}
+
+{% block javascripts %}
+    {% if show_onpage_menu %}
+        {% do assets.add('theme://js/singlePageNav.min.js') %}
+    {% endif %}
+
+        {{ parent() }}
+{% endblock %}
+
+  
+{% block stylesheets %}  
+    {{ parent() }}
+             
+{% endblock %}
+    
+
+
+{% block header_navigation %}
+    {% if show_onpage_menu %}
+
+            <div class="callout dark">
+                <div class="container">
+                    <div class="modular-header row text-center">
+                        <div class="col-md-4 padding-top60">
+                        {{ page.content }}
+                        </div>
+                        <div class="col-md-8">
+                        <img alt="" class="img-responsive" src="{{ blog_image.cropResize(1280, 1200).url }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+	
+		<div id="sticky-menu" class="sticky">
+		<div class="text-center">
+        <div class="btn-group btn-group">
+        {% for module in page.collection() %}
+            {% set current_module = (module.active or module.activeChild) ? 'active' : '' %}
+            <a class="{{ current_module }} scrollTo btn btn-default" href="#{{ _self.pageLinkName(module.menu) }}">{{ module.menu }}</a>
+        {% endfor %}
+        </div>
+    	</div>
+    </div>
+    {% else %}
+        {{  parent() }}
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+	{% if not show_onpage_menu %}
+    {{ page.content }}
+    {% endif %}
+    {% for module in page.collection() %}
+        <div id="{{ _self.pageLinkName(module.menu) }}"></div>
+        {{ module.content }}
+    {% endfor %}
+{% endblock %}

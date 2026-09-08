@@ -1,0 +1,40 @@
+    <!-- Preloader -->
+    <section id="preloader">
+        <div class="loader" id="loader">
+            <div class="loader-img"></div>
+        </div>
+    </section>
+    <!-- End Preloader -->
+
+<section id="intro" class="full-screen-intro bg-img29">
+            <div class="media-wapper">
+                <!-- youtube Video -->
+                <div id="video" class="ytp-player" data-property="{videoURL:'{{ page.header.video }}',containment:'#intro', showControls:false, autoPlay:true, loop:true, mute:true, startAt:8, opacity:1, addRaster:false, quality:'default'}"></div>
+                <!-- End youtube Video -->
+            </div>
+            <div class="full-cap-wraper">
+                <div class="content-caption light-color">
+                    <div class="container"> 
+                        <h3>{{ page.header.lower_title }}</h3>
+                        <br>
+                       <h1 class="white mb-0">{{ page.header.top_title }}</h1>
+                        <br>
+                        <div class="intro-scroll-down">
+                            <a class="scroll-down" href="#about">
+                                <span class="mouse">
+                                    <span class="mouse-dot"></span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<div id="about"></div>
+
+
+
+    {% block bottom %}
+        {% do assets.addJs('theme://js/plugin/jquery.mb.YTPlayer.min.js', {'priority':60, 'group':'bottom'}) %}
+    {{ assets.js('bottom') }}
+    {% endblock %}

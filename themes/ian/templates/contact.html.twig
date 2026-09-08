@@ -1,0 +1,82 @@
+{% extends 'partials/base.html.twig' %}
+{% block content %}
+
+{% if page.media.images %}
+{% set blog_image = page.media.images|first %}
+{% else %}
+{% set blog_image = page.find('/images').media['default-page.jpg'] %}
+{% endif %}
+
+        <section class="full-screen-intro bg-img dark-bg" style="background-image: url({{ blog_image.url }})">
+                    <div class="full-cap-wraper">
+                        <div class="content-caption light-color">
+                            <div class="container"> 
+                                <h1 class="h1">{{ page.title }}</h1>
+                            
+                                <div class="intro-scroll-down">
+                                    <a class="scroll-down" href="#about">
+                                        <span class="mouse">
+                                            <span class="mouse-dot"></span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+        <div id="about"></div>
+        <div class="clearfix"></div>
+
+        <section class="ptb-60 ptb-sm-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center">
+
+                        {# Contact Icons Row #}
+                        <div class="row pb-30">
+
+                            {% if theme_config.social.email %}
+                            <div class="col-md-3 col-sm-6 mb-sm-30">
+                                <i class="fa fa-envelope fa-2x pb-15"></i>
+                                <p><a href="mailto:{{ theme_config.social.email }}">Email us</a></p>
+                            </div>
+                            {% endif %}
+
+                            {% if theme_config.social.facebook %}
+                            <div class="col-md-3 col-sm-6 mb-sm-30">
+                                <i class="fa fa-facebook fa-2x pb-15"></i>
+                                <p><a href="{{ theme_config.social.facebook }}" target="_blank">Facebook</a></p>
+                            </div>
+                            {% endif %}
+
+                            {% if theme_config.social.instagram %}
+                            <div class="col-md-3 col-sm-6 mb-sm-30">
+                                <i class="fa fa-instagram fa-2x pb-15"></i>
+                                <p><a href="{{ theme_config.social.instagram }}" target="_blank">Instagram</a></p>
+                            </div>
+                            {% endif %}
+
+                            {% if theme_config.social.youtube %}
+                            <div class="col-md-3 col-sm-6 mb-sm-30">
+                                <i class="fa fa-youtube fa-2x pb-15"></i>
+                                <p><a href="{{ theme_config.social.youtube }}" target="_blank">YouTube</a></p>
+                            </div>
+                            {% endif %}
+
+                        </div>
+
+                        {# Page content if any #}
+                        {% if page.content %}
+                        <div class="mt-30">{{ page.content }}</div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}
+
+{% block bottom %}
+{{ parent() }}
+{% endblock %}

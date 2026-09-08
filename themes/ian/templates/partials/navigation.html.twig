@@ -1,0 +1,39 @@
+{% macro loop(page) %}
+    {% for p in page.children.visible %}
+        {% set current_page = (p.active or p.activeChild) ? 'active' : '' %}
+        <li class="{{ current_page }} {% if p.children.visible.count > 0 %}nav-has-sub{% endif %}">
+            <a href="{{ p.url }}">
+                {{ p.menu }}{% if p.header.menu_small %}<span>{{ p.header.menu_small }}</span>{% endif %}
+            </a>
+            {% if p.children.visible.count > 0 %}
+                <ul class="nav-dropdown">
+                    {{ _self.loop(p) }}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+{% endmacro %}
+
+<ul>
+    {% if theme_config.dropdown.enabled %}
+        {{ _self.loop(pages) }}
+    {% else %}
+        {% for page in pages.children.visible %}
+            {% set current_page = (page.active or page.activeChild) ? 'active' : '' %}
+            <li class="{{ current_page }}">
+                <a href="{{ page.url }}">
+                    {{ page.menu }}
+                </a>
+
+            </li>
+        {% endfor %}
+    {% endif %}
+    {% for mitem in site.menu %}
+        <li class="dropdown">
+            <a href="{{ mitem.url }}" class="dropdown-toggle">
+                {{ mitem.text }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>           
+

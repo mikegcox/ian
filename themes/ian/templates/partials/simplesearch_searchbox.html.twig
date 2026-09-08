@@ -1,0 +1,22 @@
+    <section class=" top-search-bar cbp-spmenu cbp-spmenu-horizontal cbp-spmenu-top">
+        <div class="container">
+            <div class="search-wraper">
+                <input class="input-sm form-full" type="text" placeholder="Search..." value="{{ query }}" data-search-input="{{ base_url_relative }}{{ config.plugins.simplesearch.route}}/query" />
+                <a class="search-bar-icon"><i class="fa fa-search"></i></a>
+                <a class="bar-close toggle-menu menu-top push-body"><i class="fa fa-close"></i></a>
+            </div>
+        </div>
+    </section>
+
+<script>
+jQuery(document).ready(function($){
+    var input = $('[data-search-input]');
+
+    input.on('keypress', function(event) {
+        if (event.which == 13 && input.val().length > 3) {
+            event.preventDefault();
+            window.location.href = input.data('search-input') + '{{ config.system.param_sep }}' + input.val();
+        }
+    });
+});
+</script>

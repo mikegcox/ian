@@ -1,0 +1,62 @@
+{% extends 'partials/shoppingcart_core_base.html.twig' %}
+
+{% block content %}
+
+    {{ parent() }}
+
+{% if page.media.images %}
+{% set blog_image = page.media.images|first %}
+{% else %}
+{% set blog_image = page.find('/images').media['default-page.jpg'] %}
+{% endif %}
+
+        <section class="home-slider dark-bg">
+            <!-- Hero Slider Section -->
+            <div class="owl-carousel fullwidth-slider white o-flow-hidden">
+                <div class="item bg-img parallax parallax-section1" style="background-image: url('{{ blog_image.url }}');">
+                    <!-- Content -->
+                    <div class="full-cap-wraper  light-color">
+                        <div class="content-caption light-color">
+                            <div class="container">
+                                <div class="row title">
+                                    <h2 class="h2">{{ page.title }}</h2>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Content -->
+                </div>
+            </div>
+        </section>
+        <div class="clearfix"></div>
+
+            <section class="ptb ptb-sm-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        {% include 'partials/shoppingcart_core_cart.html.twig' %}
+
+                        <script>
+                            (function() {
+                                ShoppingCart.currentPageIsProducts = true;
+                            }());
+                        </script>
+
+                        {{ page.content }}
+
+                        <div class="shoppingcart-categories block-group">
+                            {% for child in page.collection() %}
+                                {% if (child.header.unpublished is not defined or (child.header.unpublished == false)) %}
+                                    {% include 'partials/shoppingcart_core_category_item.html.twig' with {'page': child, 'parent': page} %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+{% endblock %}

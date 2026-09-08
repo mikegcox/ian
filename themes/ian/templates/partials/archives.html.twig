@@ -1,0 +1,11 @@
+<ul class="nav nav-list">
+
+{% for year,items in archives_data %}
+    <li>
+    	<a href="{{ base_url }}/wallpapers/archives_month{{ config.system.param_sep }}{{ year|date('Y')|lower|e('url') }}">
+        <i class="fa fa-angle-right"></i>
+        {{ year }}
+        </a>
+    </li>
+{% endfor %}
+</ul>

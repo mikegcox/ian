@@ -1,0 +1,34 @@
+{% extends 'partials/base.html.twig' %}
+{% block content %}
+
+{% if page.media.images %}
+{% set blog_image = page.media.images|first %}
+{% else %}
+{% set blog_image = page.find('/images').media['default-page.jpg'] %}
+{% endif %}
+
+        <section class="inner-intro light-color overlay-dark parallax" style="background-image: url('{{ blog_image.cropResize(1920, 1080).url }}');background-position:center;">
+            <div class="container">
+                <div class="row title">
+                    <h2 class="h2">{{ page.title }}</h2>
+                        {% include 'partials/breadcrumbs.html.twig' %}
+                </div>
+            </div>
+        </section>
+        <div class="clearfix"></div>
+
+        <section class="ptb ptb-sm-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        {% include 'partials/shoppingcart_core_cart_external.html.twig' %}
+                        {{ page.content }}
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+{% endblock %}
+

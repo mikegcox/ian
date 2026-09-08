@@ -1,0 +1,15 @@
+{% set taxlist = taxonomylist.get() %}
+
+{% if taxlist %}
+
+<ul class="container-filter-alt">
+    {% for tax,value in taxlist[taxonomy] %}
+    <li>
+        <a class="categories" data-filter=".{{ tax|replace({' ':'-'}) }}">
+        {{ tax }}
+        </a> 
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+

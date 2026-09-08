@@ -1,0 +1,33 @@
+{% set shoppingcart_image = page.media.images|first %}
+
+                    <div class="nf-item col-md-4 col-sm-6 col-xs-12 mb-30">
+                        <div class="item-box">
+                            <!-- Shop item images -->
+                            <div class="shop-item">
+                                <div class="item-img">
+                                {% if uri.query(picture) %}
+                                {{ blog_image.cropResize(image_size_product, image_size_product).html(page.header.title, 'shoppingcart-thumb-image') }}
+                                {% else %}
+                                <br><br><br>
+                                {% endif %}
+                                </div>
+                                <div class="item-mask">
+                                    <div class="item-mask-detail">
+                                        <div class="item-mask-detail-ele">
+                                            <a a href="{{ page.url }}?{{ uri.query(picture) }}" class="btn btn-line-xs btn-white-line"><i class="fa fa-shopping-cart"></i>Add to Cart</a><br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Shop item images -->
+
+                            <!-- Shop item info -->
+                            <div class="shop-item-info">
+                                <a href="{{ page.url }}?{{ uri.query(picture) }}">
+                                    <h6 class="shop-item-name">{{ page.header.title }}</h6>
+                                </a>
+                                <div class="shop-item-price"><span>{% include 'partials/shoppingcart_core_price.html.twig' with { price: page.header.price } %}</span></div>
+                            </div>
+                            <!-- Shop item info -->
+                        </div>
+                    </div>

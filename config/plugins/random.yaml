@@ -1,0 +1,7 @@
+enabled: false
+route: /random
+redirect: true
+filters:
+  category:
+    - wallpaper
+filter_combinator: and

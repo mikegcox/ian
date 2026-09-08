@@ -1,0 +1,22 @@
+{% extends 'partials/shoppingcart_core_base.html.twig' %}
+{% set blog_image = page.parent.parent.media[uri.query('picture')] %}
+{% set top_image = page.find('/images').media['banner-print-checkout2.jpg'] %}
+{% block content %}
+
+    {{ parent() }}
+    <section class="dark-bg">
+        <div class="bg-img pt-80 pb-60" style="background-image: url('{{ top_image.url }}');">
+            <div class="content-caption light-color">
+                <div class="container">
+                    <div class="row title">
+                        <h2 class="h2">{{ page.parent.title }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <div class="clearfix"></div>
+    <div class="container">
+        {% include 'partials/shoppingcart_core_photo_item.html.twig' %}
+    </div>
+{% endblock %}

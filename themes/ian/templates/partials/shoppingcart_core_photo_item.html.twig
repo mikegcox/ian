@@ -1,0 +1,51 @@
+
+{% set shoppingcart_image = page.parent.parent.media[uri.query('picture')] %}
+{% set image_size_product = config.plugins.shoppingcart.ui.image_size_product %}
+
+{% include 'partials/shoppingcart_core_cart.html.twig' %}
+
+{% set theprice = 10 %}
+{% set thepicture = uri.query('picture') %}
+{% set size = uri.query('size') %}
+{% set thetext = '' %}
+{% if size == 'small' %}
+{% set theprice = site.print_price_sm %}
+{% set thetext = site.print_text_sm %}
+{% endif %}
+
+{% if size == 'large' %}
+{% set theprice = site.print_price_lg %}
+{% set thetext = site.print_text_lg %}
+{% endif %}
+
+
+
+<div id="shoppingcart-detail" class="shoppingcart-product-container block-group">
+    <div class="shoppingcart-info block">
+        <div class="shoppingcart-thumb">
+            {% if shoppingcart_image %}
+                {{ shoppingcart_image.cropResize(image_size_product, image_size_product).html(thepicture, 'shoppingcart-thumb-image') }}
+            {% else %}
+                <br><br><br>
+            {% endif %}
+            <span class="shoppingcart-price">
+                {% include 'partials/shoppingcart_core_price.html.twig' with { price: theprice } %}
+            </span>
+        </div>
+        <p>
+            <div class="shoppingcart-quantity-chooser">
+                <label for="js__shoppingcart__quantity">{{ 'PLUGIN_SHOPPINGCART.QUANTITY'|t }}</label>
+                <input type="text" class="small" id="js__shoppingcart__quantity" placeholder="1" value="1" />
+            </div>
+
+            {% set product = { 'title': page.parent.parent.title ~ ' ' ~ thepicture ~' ' ~ size, 'id': md5(page.parent.parent.title ~ ' ' ~ thepicture ~' ' ~ size), 'price': theprice, 'image': shoppingcart_image, 'url': page.url } %}
+            {% include 'partials/shoppingcart_core_add_to_cart.html.twig' with { product: product } %}
+
+        </p>
+    </div>
+    <div class="shoppingcart-details block">
+        <h3>{{ thetext }}</h3>
+        <p><strong>{{ site.print_text_generic }}</strong></p>
+        <p><a class="btn btn-md btn-black" href="mailto:{{ site.author.email }}?subject=Photo inquiry - {{ thepicture }}">Contact us</a></p>
+    </div>
+</div>

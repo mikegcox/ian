@@ -1,0 +1,65 @@
+{% extends 'partials/shoppingcart_core_base.html.twig' %}
+
+{% block content %}
+
+{% if page.media.images %}
+{% set blog_image = page.media.images|first %}
+{% else %}
+{% set blog_image = page.find('/images').media['default-page.jpg'] %}
+{% endif %}
+
+        <section class="full-screen-intro bg-img dark-bg" style="background-image: url({{ blog_image.url }})">
+                    <div class="full-cap-wraper">
+                        <div class="content-caption light-color">
+                            <div class="container"> 
+                                <h1 class="h1">{{ page.title }}</h1>
+                                                {{ content }}
+                                <div class="intro-scroll-down">
+                                    <a class="scroll-down" href="#about">
+                                        <span class="mouse">
+                                            <span class="mouse-dot"></span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+        <div id="about"></div>
+        <div class="clearfix"></div>
+
+
+    <script>
+    (function() {
+        ShoppingCart.currentPageIsProducts = true;
+    }());
+    </script>
+
+    {{ parent() }}
+
+
+    <section id="shop-item" class="ptb ptb-sm-80">
+        <div class="container">
+            {% include 'partials/shoppingcart_core_cart.html.twig' %}
+            {{ page.content }}
+            <div class="row container-grid">
+                
+                        {% for child in page.collection() %}
+                            {% if (child.header.unpublished is not defined or (child.header.unpublished == false)) %}
+                                {% include 'partials/shoppingcart_core_product_item.html.twig' with {'page': child, 'parent': page} %}
+                            {% endif %}
+                        {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+                
+
+            
+
+
+
+{% endblock %}
+
+

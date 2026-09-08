@@ -1,0 +1,30 @@
+
+{% if page.media.images %}
+{% set blog_image = page.media.images|first %}
+{% else %}
+{% set blog_image = page.find('/images').media['default-page.jpg'] %}
+{% endif %}
+
+
+
+
+<section class="full-screen-intro bg-img" style="background-image: url({{ blog_image.url }})">
+            <div class="full-cap-wraper">
+                <div class="content-caption light-color">
+                    <div class="container"> 
+                        <h1 class="h1">{{ page.title }}</h1>
+                                        {{ content }}
+                        <div class="intro-scroll-down">
+                            <a class="scroll-down" href="#about">
+                                <span class="mouse">
+                                    <span class="mouse-dot"></span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<div id="about"></div>
+
+

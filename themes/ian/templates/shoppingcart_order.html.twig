@@ -1,0 +1,39 @@
+{% extends 'partials/shoppingcart_core_base.html.twig' %}
+
+{% block content %}
+{% set blog_image = page.find('/images').media['banner-print-checkout2.jpg'] %}
+
+    <section class="dark-bg">
+        <div class="bg-img pt-80 pb-60" style="background-image: url('{{ blog_image.url }}');">
+            <div class="content-caption light-color">
+                <div class="container">
+                    <div class="row title">
+                        <h2 class="h2">{{ page.parent.title }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+    <section class="ptb-60 ptb-sm-80">
+        <div class="container">
+            <div class="row">
+            {% if uri.param('token') == order.token %}    
+                <div class="shoppingcart-container shoppingcart__order-confirmation">
+                    <h1>Thank you for your order</h1>
+
+                    {% include 'partials/shoppingcart_core_order_details.html.twig' %}
+                </div>
+            {% endif %}
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}
+
+
+
+
+
+        

@@ -1,0 +1,12 @@
+enabled: true
+emails_order_successful:
+  -
+    to: '{{ config.site.author.email }}'
+    from: '{{ config.site.author.email }}'
+    subject: 'New order notification'
+    twig: '{% include "emails/order_notification_store_owner.html.twig" %}'
+  -
+    to: '{{ order.data.email }}'
+    from: '{{ config.site.author.email }}'
+    subject: 'Order confirmation'
+    twig: '{% include "emails/order_confirmation_buyer.html.twig" %}'

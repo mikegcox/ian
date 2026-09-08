@@ -1,0 +1,70 @@
+{% extends 'partials/shoppingcart_core_base.html.twig' %}
+
+{% block content %}
+
+    {{ parent() }}
+
+        <section class="pt-80 pt-sm-60 dark-bg">
+            <div class="owl-carousel image-slider o-flow-hidden">
+                
+                <!-- loop here -->
+               {% for picture in page.header.pictures %}
+                <div class="item text-center">
+                {{ page.media[picture.picture].derivatives(320, 1000).sizes('(max-width:26em) 100vw, 50vw').html() }}
+                
+                </div>
+                {% endfor %}
+                <!-- End loop -->
+            </div>
+        </section>
+
+
+    <div class="container">
+    
+        
+{% set shoppingcart_image = page.media.images|first %}
+{% set image_size_product = config.plugins.shoppingcart.ui.image_size_product %}
+
+{% include 'partials/shoppingcart_core_cart.html.twig' %}
+
+<div id="shoppingcart-detail" class="shoppingcart-product-container block-group">
+    <div class="shoppingcart-info block">
+        <div class="shoppingcart-thumb">
+            {% if shoppingcart_image %}
+                {{ shoppingcart_image.cropResize(image_size_product, image_size_product).html(page.header.title, 'shoppingcart-thumb-image') }}
+            {% else %}
+                <br><br><br>
+            {% endif %}
+            <span class="shoppingcart-price soldout">
+                Sold&nbsp;Out
+            </span>
+        </div>
+        <p>
+            <div class="shoppingcart-quantity-chooser">
+                <label for="js__shoppingcart__quantity"></label>
+            </div>
+
+
+        </p>
+            {% if page.header.gallery_url %}
+            <p><a href="{{base_url}}{{ page.header.gallery_url }}" class="btn btn-md btn-black">See more pages / purchase prints</a></p>
+            {% endif %}
+    </div>
+    <div class="shoppingcart-details block">
+        <h1>{{ page.header.title }}</h1>
+        <p>{{ page.content }}</p>
+        
+        <p><strong><em>{{ page.header.title }} is SOLD OUT. A very few copies are available to collectors</em></strong></p>
+    </div>
+</div>        
+        
+        
+        
+        
+        
+    </div>
+{% endblock %}
+
+
+
+

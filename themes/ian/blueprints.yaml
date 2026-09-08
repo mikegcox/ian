@@ -1,0 +1,118 @@
+name: ian
+version: 1.0.1
+description: "Theme built from Mazel Bootstrap HTML Template"
+icon: plane
+author:
+  name: Mike Cox
+  email: mcox@mcox.ca
+  url: http://thousandislandsphotoart.com
+homepage: https://github.com/getgrav/grav-theme-vintagemoto
+demo: http://demo.getgrav.org/blog-skeleton
+keywords: antimatter, theme, core, modern, fast, responsive, html5, css3
+bugs: https://github.com/getgrav/grav-theme-vintagemoto/issues
+license: MIT
+
+form:
+  validation: loose
+  fields:
+    dropdown.enabled:
+      type: toggle
+      label: Dropdown in navbar
+      highlight: 1
+      default: 1
+      options:
+        1: Enabled
+        0: Disabled
+      validate:
+        type: bool
+
+    social_section:
+      type: section
+      title: Social Media & Contact
+      underline: true
+
+    social.email:
+      type: email
+      label: Contact Email Address
+      default: lyne@1000islandsphotoart.com
+
+    social.facebook:
+      type: text
+      label: Facebook URL
+      placeholder: 'https://facebook.com/yourpage'
+
+    social.instagram:
+      type: text
+      label: Instagram URL
+      placeholder: 'https://instagram.com/yourhandle'
+
+    social.youtube:
+      type: text
+      label: YouTube URL
+      placeholder: 'https://youtube.com/yourchannel'
+
+    pricing_section:
+      type: section
+      title: Print Pricing
+      underline: true
+
+    pricing.print_sm_cad:
+      type: number
+      label: 13x19 Giclée Price (CAD)
+      default: 150
+      validate:
+        type: number
+
+    pricing.print_sm_usd:
+      type: number
+      label: 13x19 Giclée Price (USD)
+      default: 110
+      validate:
+        type: number
+
+    pricing.print_lg_cad:
+      type: number
+      label: 17x22 Giclée Price (CAD)
+      default: 195
+      validate:
+        type: number
+
+    pricing.print_lg_usd:
+      type: number
+      label: 17x22 Giclée Price (USD)
+      default: 145
+      validate:
+        type: number
+
+    canvas_section:
+      type: section
+      title: Canvas Pricing
+      underline: true
+
+    pricing.canvas_md_cad:
+      type: number
+      label: 24x36 Canvas Price (CAD)
+      default: 295
+      validate:
+        type: number
+
+    pricing.canvas_md_usd:
+      type: number
+      label: 24x36 Canvas Price (USD)
+      default: 220
+      validate:
+        type: number
+
+    pricing.canvas_lg_cad:
+      type: number
+      label: 36x48 Canvas Price (CAD)
+      default: 395
+      validate:
+        type: number
+
+    pricing.canvas_lg_usd:
+      type: number
+      label: 36x48 Canvas Price (USD)
+      default: 295
+      validate:
+        type: number

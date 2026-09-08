@@ -1,0 +1,79 @@
+
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+
+{% if page.media.images %}
+{% set blog_image = page.media.images|first %}
+{% else %}
+{% set blog_image = page.find('/images').media['default-page.jpg'] %}
+{% endif %}
+
+        <section class="full-screen-intro bg-img dark-bg" style="background-image: url({{ blog_image.url }})">
+                    <div class="full-cap-wraper">
+                        <div class="content-caption light-color">
+                            <div class="container"> 
+                                <h1 class="h1">{{ page.title }}</h1>
+                                <div class="intro-scroll-down">
+                                    <a class="scroll-down" href="#about">
+                                        <span class="mouse">
+                                            <span class="mouse-dot"></span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+        <div id="about"></div>
+        <div class="clearfix"></div>
+
+        <section class="ptb-15 ptb-sm-30">
+            <div class="container">
+                <div class="row">
+                    <ul class="container-filter categories-filter">
+                        <li><a class="categories active" data-filter="*">All</a></li>
+                        <li><a class="categories" data-filter=".Places">Places</a></li>
+                        <li><a class="categories" data-filter=".Themes">Themes</a></li>
+                        <li><a class="categories" data-filter=".Books">Books</a></li>
+                        <li><a class="categories" data-filter=".France">France</a></li>
+                        <li><a class="categories" data-filter=".Favorites">Favorites</a></li>
+                    </ul>
+                </div>
+                {{ content }}
+                <div class="row container-grid nf-col-4">
+                    {% for p in page.collection %}
+                    
+                    <div class="nf-item spacing {% for tag in p.taxonomy.portfolio %}{{ tag|replace({' ':'-'}) }}{% endfor %}">
+                        <div class="item-box">
+                            <a href="{{ p.url }}">
+                                 {% if p.media['cover.jpg'] %}
+                                    {% set image = p.media['cover.jpg'] %}
+                                  {{image.cropResize(800, 600).html('item-container1',p.title,'item-container')}}
+                                  {% endif %}                                
+                                
+                                <div class="item-mask">
+                                    <div class="item-caption">
+                                        <h6 class="white">View Gallery - Purchase Prints</h6>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="shop-item-info">
+                                <a href="{{ p.url }}">
+                                    <h6 class="{{ p.url }}">{{ p.menu }}</h6>
+                                </a>
+                        </div>
+                    </div>
+                
+               {% endfor %}
+               </div> 
+            </div>
+            
+        </section>
+
+
+
+
+
+{% endblock %}

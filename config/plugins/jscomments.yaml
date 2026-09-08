@@ -1,0 +1,51 @@
+enabled: true
+active: true
+provider: intensedebate
+providers:
+  disqus:
+    show_count: false
+  facebook:
+    num_posts: 5
+    colorscheme: light
+    order_by: social
+    width: 100%
+  googleplus:
+    show_count: false
+    width: 100%
+  intensedebate:
+    account_number: c8e4c9c4916719b41e235d85be07a769
+  isso:
+    builtin_css: true
+    reply_to_self: false
+    require:
+      author: true
+      email: true
+    comments:
+      number: 10
+      nested_number: 5
+      reveal: 5
+    avatar:
+      enabled: true
+    vote:
+      enabled: true
+      levels: '-5,5'
+  muut:
+    forum: vintagemoto
+    channel: General
+    widget: true
+    show_online: false
+    show_title: true
+    upload: false
+    share: true
+    language: en
+  hypercomments:
+    social:
+      - vk
+      - odnoklassniki
+      - yandex
+      - mailru
+      - google
+      - livejournal
+      - facebook
+      - twitter
+      - tumblr

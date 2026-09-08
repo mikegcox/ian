@@ -1,0 +1,25 @@
+<section id="intro" class="full-screen-intro bg-img dark-bg" style="background-image: url({{ page.media.images|first.url }})">
+            <div class="media-wapper">
+                <!-- youtube Video -->
+                <div id="video" class="ytp-player" data-property="{videoURL:'{{ page.header.video }}',containment:'#intro', showControls:false, autoPlay:true, loop:true, mute:true,  opacity:1, addRaster:false, quality:'default'}"></div>
+                <!-- End youtube Video -->
+            </div>
+            <div class="full-cap-wraper">
+                <div class="content-caption light-color">
+                    <div class="container"> 
+                        <br>
+                       <h1 class="white mb-0 dropshadow">{{ page.header.top_title }}</h1>
+                        <br>
+                        <h3>{{ page.header.lower_title }}</h3>
+                        <div class="intro-scroll-down">
+                            <a class="scroll-down" href="#about">
+                                <span class="mouse">
+                                    <span class="mouse-dot"></span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<div id="about"></div>

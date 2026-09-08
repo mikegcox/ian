@@ -1,0 +1,70 @@
+			<!-- REVOLUTION SLIDER -->
+			<div class="slider fullwidthbanner-container roundedcorners" style="margin-bottom:1em;">
+				<div class="fullwidthbanner">
+					<ul class="hide">
+                        {% for slide in page.header.slides %}
+						<!-- SLIDE  -->
+						<li data-transition="fade" data-slotamount="7" data-masterspeed="300" data-saveperformance="off" >
+
+							<img src="{{ url('theme://assets/images/1x1.png') }}" data-lazyload="{{ page.media[slide.image].url }}" alt="" data-bgfit="cover" data-bgposition="center top" data-bgrepeat="no-repeat" />
+							
+                            <div class="tp-caption very_large_text lft tp-resizeme" 
+								data-x="left" data-hoffset="70"
+								data-y="85" 
+								data-speed="1000" 
+								data-start="1200" 
+								data-easing="easeOutExpo" 
+								data-splitin="none" 
+								data-splitout="none" 
+								data-elementdelay="0.1" 
+								data-endelementdelay="0.1" 
+								data-endspeed="300">{{ slide.heading1 }}
+							</div>
+                            
+							<div class="tp-caption medium_text_shadow lfb tp-resizeme" 
+								data-x="left" data-hoffset="70"
+								data-y="150" 
+								data-speed="1000" 
+								data-start="1400" 
+								data-easing="easeOutExpo" 
+								data-splitin="none" 
+								data-splitout="none" 
+								data-elementdelay="0.1" 
+								data-endelementdelay="0.1" 
+								data-endspeed="300">{{ slide.heading2 }}
+							</div>
+
+							<div class="tp-caption block_black sfl tp-resizeme" 
+								data-x="70" 
+								data-y="216" 
+								data-speed="750" 
+								data-start="1900" 
+								data-easing="easeOutExpo" 
+								data-splitin="none" 
+								data-splitout="none" 
+								data-elementdelay="0.1" 
+								data-endelementdelay="0.1" 
+								data-endspeed="300">{{ slide.heading3 }}
+							</div>
+
+							<div class="tp-caption block_black sfr tp-resizeme" 
+								data-x="70" 
+								data-y="260" 
+								data-speed="750" 
+								data-start="2200" 
+								data-easing="easeOutExpo" 
+								data-splitin="none" 
+								data-splitout="none" 
+								data-elementdelay="0.1" 
+								data-endelementdelay="0.1" 
+								data-endspeed="300">{{ slide.heading4 }}
+							</div>
+
+						</li>
+                        {% endfor %}
+                    </ul>
+					<div class="tp-bannertimer"></div>
+				</div>
+			</div>
+			<!-- /REVOLUTION SLIDER -->
+

@@ -1,0 +1,96 @@
+                        <div class="row">
+
+                            <div class="col-md-12 blog-post-hr">
+
+                                <div class="blog-post mb-30">
+                                    <div class="post-media">
+                                        {% if truncate %}
+                                        <figure>
+                                            {{ page.media.images|first.cropResize(900,600).html('',page.title,'img-responsive') }}
+                                        </figure>
+                                        {% endif %}
+                                        
+                                    </div>
+                                    <div class="post-meta"><span>
+                                        {% for tag in page.taxonomy.author %}
+                                        <a href="{{ page.parent.url }}/author{{ config.system.param_sep }}{{ tag }}">{{ tag }}</a>
+                                        {% endfor %}
+                                        </span> 
+                                        <span>
+                                         {{ page.date|date("d") }} {{ page.date|date("M") }} {{ page.date|date("Y") }}
+                                        </span>
+                                    </div>
+                                    <div class="post-header">
+                                        <h4><a href="{{ page.url }}">{{ page.title }}</a></h4>
+                                    </div>
+                                    <div class="post-entry">
+                                        
+                                        
+
+                                    <!-- blog short preview -->
+                                    {% if page.header.continue_link is sameas(false) %}
+                                        <p>{{ page.content }}</p>
+                                        {% if not truncate %}
+                                        {% set show_prev_next = true %}
+                                        {% endif %}
+                                    {% elseif truncate and page.summary != page.content %}
+                                        {{ page.summary }}
+
+                                    {% elseif truncate %}
+                                        {% if page.summary != page.content %}
+                                            <p>{{ page.content|truncate(550) }}</p>
+                                        {% else %}
+                                            {{ page.content }}
+                                        {% endif %}
+                                    {% else %}
+                                        <p>{{ page.content }}</p>
+                                        {% set show_prev_next = true %}
+                                    {% endif %}
+
+       
+                                    
+                                    </div>
+                                    <div class="post-tag {% if not show_prev_next %}pull-left{% endif %}">
+                                     {% for tag in page.taxonomy.category %}
+                                        <span><a href="{{ page.parent.url }}/category{{ config.system.param_sep }}{{ tag }}">{{ tag }}</a></span>
+                                     {% endfor %}
+                                    </div>
+                                    {% if not show_prev_next %}
+                                    <div class="post-more-link pull-right"><a href="{{ page.url }}">Read More<i class="fa fa-long-arrow-right right"></i></a></div>
+                                    {% else %}
+                                    
+                                    <div class="item-nav">
+                                        {% if not page.isFirst %}
+                                            <a class="item-next" href="{{ page.nextSibling.url }}">
+                                            <div class="next-btn"><i class="fa fa-angle-right"></i></div>
+                                            <div class="item-next-text xs-hidden">
+                                                <h6>Next Post</h6>
+                                            </div>
+                                            </a>
+                                        {% endif %}
+
+                                        {% if not page.isLast %}
+                                            <a class="item-prev" href="{{ page.prevSibling.url }}">
+                                            <div class="prev-btn"><i class="fa fa-angle-left"></i></div>
+                                            <div class="item-prev-text xs-hidden">
+                                                <h6>Prev Post</h6>
+                                            </div>
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                                    
+                                    
+                                    
+                                </div>
+                                <hr />
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+

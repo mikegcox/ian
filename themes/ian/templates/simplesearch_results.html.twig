@@ -1,0 +1,61 @@
+{% extends 'partials/simplesearch_base.html.twig' %}
+
+{% block content %}
+{% set blog_image = page.find('/images').media['default-page.jpg'] %}
+        <section class="home-slider dark-bg">
+            <!-- Hero Slider Section -->
+            <div class="owl-carousel fullwidth-slider white o-flow-hidden">
+                <div class="item bg-img parallax parallax-section1" style="background-image: url('{{ blog_image.url }}');">
+                    <!-- Content -->
+                    <div class="full-cap-wraper  light-color">
+                        <div class="content-caption light-color">
+                            <div class="container">
+                                <div class="row title">
+                                    <h2 class="h2">{{ page.title }}</h2>
+                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Content -->
+                </div>
+            </div>
+        </section>
+        <div class="clearfix"></div>
+        <section class="ptb-60 ptb-sm-80">
+            <div class="container">
+                <div class="row">
+                    <div class="content-padding simplesearch col-md-12">
+                    <h1 class="search-header">{{"PLUGIN_SIMPLESEARCH.SEARCH_RESULTS"|t}}</h1>
+                    <div class="center">
+                        {% include 'partials/simplesearch_searchbox.html.twig' %}
+                    </div>
+
+                    <p>
+                        {% if search_results.count == 1 %}
+                            {{ "PLUGIN_SIMPLESEARCH.SEARCH_RESULTS_SUMMARY_SINGULAR"|t(query) }}
+                        {% else %}
+                            {{ "PLUGIN_SIMPLESEARCH.SEARCH_RESULTS_SUMMARY_PLURAL"|t(query, search_results.count) }}
+                        {% endif %}
+                    </p>
+                    {% for page in search_results %}
+                        {% include 'partials/simplesearch_item.html.twig' with {'page':page} %}
+                    {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

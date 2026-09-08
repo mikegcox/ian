@@ -1,0 +1,67 @@
+{% embed 'partials/base.html.twig' %}
+
+	{% set collection = page.collection() %}
+    {% set feed_url = base_url %}
+
+    {% if base_url == '/' %}
+        {% set base_url = '' %}
+    {% endif %}
+
+    {% if base_url == base_url_relative %}
+        {% set feed_url = base_url~'/'~page.slug %}
+    {% endif  %}
+    
+
+	{% block content %}
+    {% set blog_image = page.media.images|first %}
+			{% if blog_image %}
+
+        <section class="full-screen-intro bg-img dark-bg" style="background-image: url({{ blog_image.url }})">
+                    <div class="full-cap-wraper">
+                        <div class="content-caption light-color">
+                            <div class="container"> 
+                                <h1 class="h1">{{ page.title }}</h1>
+                            
+                                <div class="intro-scroll-down">
+                                    <a class="scroll-down" href="#about">
+                                        <span class="mouse">
+                                            <span class="mouse-dot"></span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+        <div id="about"></div>
+        <div class="clearfix"></div>
+            {% endif %}
+
+<!-- CONTENT -->
+    <section class="ptb ptb-sm-80">
+        <div class="container">
+            <div class="row">
+                <!-- Post Item -->
+                <div class="col-lg-9 col-md-9">
+				{% for child in collection.published %}
+			        {% include 'partials/wallpaper_item.html.twig' with {'page':child, 'truncate':true} %}
+			    {% endfor %}
+
+                {% if config.plugins.pagination.enabled and collection.params.pagination %}
+                    {% include 'partials/pagination.html.twig' with {'pagination':collection.params.pagination} %}
+                {% endif %}                
+                </div>
+                <!-- BLOG SIDEBAR -->
+                <div class="col-lg-3 col-md-3 mt-sm-60">
+                {% include 'partials/wallpaper_sidebar.html.twig' %}
+                </div>
+                <!-- /BLOG SIDEBAR -->
+            </div>
+        </div>
+    </section>
+
+	{% endblock %}
+
+{% endembed %}
+
+

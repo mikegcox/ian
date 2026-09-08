@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+{% set theme_config = attribute(config.themes, config.system.pages.theme) %}
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-49G7EZJF0T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-49G7EZJF0T');
+</script>
+
+
+    {% block head %}
+    <meta charset="utf-8" />
+    <title>{% if header.title %}{{ header.title }} | {% endif %}{{ site.title }}</title>
+    {% include 'partials/metadata.html.twig' %}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <!--[if IE]>
+
+        <!-- Favicone Icon -->
+        <link rel="shortcut icon" type="image/x-icon" href="{{ url('theme://img/favicon.ico') }}">
+        <link rel="icon" type="image/png" href="{{ url('theme://img/favicon.png') }}">
+        <link rel="apple-touch-icon" href="{{ url('theme://img/favicon.png') }}">
+    
+        <!-- CSS -->
+
+    
+    
+    {% block stylesheets %}
+        {% do assets.addCss('theme://css/style.css',103) %}
+        {% do assets.addCss('theme://css/bootstrap.css',102) %}
+        {% do assets.addCss('theme://css/font-awesome.css',101) %}
+        {% do assets.addCss('theme://css/plugin/jPushMenu.css',99) %}
+        {% do assets.addCss('theme://css/plugin/animate.css',98) %}
+        {% do assets.addCss('theme://css/jquery-ui.css',97) %}
+        {% do assets.addCss('theme://css/plugin/YTPlayer.css',96) %} 
+    {% endblock %}
+    {{ assets.css() }}
+        
+
+    {% block javascripts %}
+        {% do assets.addJs('jquery', 101) %}
+    {% endblock %}
+    {{ assets.js() }}
+        
+{% endblock head %}
+</head>
+    
+<body class="full-intro background--dark">
+    <!-- Preloader -->
+    <section id="preloader">
+        <div class="loader" id="loader">
+            <div class="loader-img"></div>
+        </div>
+    </section>
+    <!-- End Preloader -->
+    <!-- Sidemenu -->
+    <section class="side-menu cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right">
+        
+        
+        {% include 'partials/navigation.html.twig' %}
+    </section>
+    <!--End Sidemenu -->
+
+    <!-- Search menu Top -->
+    
+  {% include 'partials/simplesearch_searchbox.html.twig' %}  
+
+    <!--End Search menu Top -->
+
+    <!-- Site Wraper -->
+    <div class="wrapper">
+
+        <!-- HEADER -->
+        <header class="header {{ page.header.classes }}">
+            <div class="container">
+
+                <!-- logo -->
+                <div class="logo">
+                    <a href="{{ base_url == '' ? '/' : base_url }}"> 
+                        <img class="l-black" src="{{ theme_url }}/img/logo-black.png" />
+                        {% if page.header.classes == 'negative' %}
+                        <img class="l-white" src="{{ theme_url }}/img/logo-black.png" />
+                        {% else %}
+                        <img class="l-white" src="{{ theme_url }}/img/logo-white.png" />
+                        {% endif %}
+                        <img class="l-color" src="{{ theme_url }}/img/logo-color.png" />
+                    </a>
+                </div>
+                <!--End logo-->
+
+                <!-- Rightside Menu (Search, Cart, Social, Hamburger) -->
+                <div class="side-menu-btn">
+                    <ul>
+                        <!-- Search Icon -->
+                        <li class="">
+                            <a class="right-icon search toggle-menu menu-top push-body"><i class="fa fa-search"></i></a>
+                        </li>
+                        <!-- End Search Icon -->
+
+                        <!-- Cart Icon -->
+                        <li class="">
+                            <a href="{{ base_url}}/checkout" class="right-icon cart js__shoppingcart-counter">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </li>
+                        <!-- End Cart Icon -->
+
+                        <!-- Social Icons -->
+                        {% if theme_config.social.email %}
+                        <li class="xs-hidden">
+                            <a href="mailto:{{ theme_config.social.email }}" class="right-icon"><i class="fa fa-envelope"></i></a>
+                        </li>
+                        {% endif %}
+                        {% if theme_config.social.facebook %}
+                        <li class="xs-hidden">
+                            <a href="{{ theme_config.social.facebook }}" class="right-icon" target="_blank"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        {% endif %}
+                        {% if theme_config.social.instagram %}
+                        <li class="xs-hidden">
+                            <a href="{{ theme_config.social.instagram }}" class="right-icon" target="_blank"><i class="fa fa-instagram"></i></a>
+                        </li>
+                        {% endif %}
+                        <!-- End Social Icons -->
+
+                    </ul>
+                </div>
+                <!-- End Rightside Menu -->
+
+
+                <!-- Navigation Menu -->
+                <nav class='navigation'>
+                    
+                    {% include 'partials/navigation.html.twig' %}
+
+                </nav>
+                <!--End Navigation Menu -->
+
+            </div>
+        </header>
+        <!-- END HEADER -->
+
+        <!-- CONTENT --------------------------------------------------------------------------------->
+
+        {% block body %}
+            {% block content %}{% endblock %}
+        {% endblock %}
+
+        <!-- END CONTENT ---------------------------------------------------------------------------->
+
+        <!-- FOOTER -->
+        {% include 'partials/footer.html.twig' %}
+        <!-- END FOOTER -->
+
+    </div>
+    <!-- Site Wraper End -->
+
+       
+
+    
+    {% block bottom %}
+        {% do assets.addJs('theme://js/plugin/jquery.easing.js', {'priority':79, 'group':'bottom'}) %}  
+        {% do assets.addJs('theme://js/jquery-ui.min.js', {'priority':78, 'group':'bottom'}) %}  
+        {% do assets.addJs('theme://js/bootstrap.min.js', {'priority':77, 'group':'bottom'}) %}  
+        {% do assets.addJs('theme://js/plugin/background-check.min.js', {'priority':75, 'group':'bottom'}) %}  
+        {% do assets.addJs('theme://js/plugin/jquery.fitvids.js', {'priority':74, 'group':'bottom'}) %}  
+        {% do assets.addJs('theme://js/plugin/jquery.viewportchecker.js', {'priority':73, 'group':'bottom'}) %}  
+        {% do assets.addJs('theme://js/plugin/jquery.stellar.min.js', {'priority':72, 'group':'bottom'}) %}  
+        {% do assets.addJs('theme://js/plugin/wow.min.js', {'priority':71, 'group':'bottom'}) %}  
+        {% do assets.addJs('theme://js/plugin/jquery.colorbox-min.js', {'priority':70, 'group':'bottom'}) %}  
+        {% do assets.addJs('theme://js/plugin/owl.carousel.min.js', {'priority':69, 'group':'bottom'}) %}  
+        {% do assets.addJs('theme://js/plugin/isotope.pkgd.min.js', {'priority':68, 'group':'bottom'}) %}  
+        {% do assets.addJs('theme://js/plugin/masonry.pkgd.min.js', {'priority':67, 'group':'bottom'}) %}
+        {% do assets.addJs('theme://js/plugin/imagesloaded.pkgd.min.js', {'priority':66, 'group':'bottom'}) %}
+        {% do assets.addJs('theme://js/plugin/jPushMenu.js', {'priority':65, 'group':'bottom'}) %}  
+        {% do assets.addJs('theme://js/plugin/jquery.fs.tipper.min.js', {'priority':64, 'group':'bottom'}) %}  
+        {% do assets.addJs('theme://js/plugin/mediaelement-and-player.min.js', {'priority':63, 'group':'bottom'}) %}  
+        {% do assets.addJs('theme://js/theme.js', {'priority':62, 'group':'bottom'}) %}  
+        {% do assets.addJs('theme://js/navigation.js', {'priority':61, 'group':'bottom'}) %} 
+        {% do assets.addJs('theme://js/plugin/jquery.mb.YTPlayer.min.js', {'priority':60, 'group':'bottom'}) %}
+    {{ assets.js('bottom') }}
+    {% endblock %}
+
+    
+    
+</body>
+</html>

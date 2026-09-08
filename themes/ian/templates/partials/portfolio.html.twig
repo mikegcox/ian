@@ -1,0 +1,54 @@
+{% set taxlist = taxonomylist.get() %}
+{% if taxlist %}
+
+
+
+        <section id="shop-item" class="pt pt-sm-80">
+            <div class="container text-center">
+                <div class="row">
+    {% for tax,value in taxlist[taxonomy] %}
+                    <div class="col-md-4 col-sm-6">
+                        <div class="item-box">
+                            <!-- Shop item images -->
+                            <div class="shop-item">
+                                <div class="item-img">
+                                    <img src="{{ page.find('/images').url }}/{{tax}}.jpg">
+                                </div>
+                                <div class="item-mask">
+                                    <div class="item-mask-detail">
+                                        <div class="item-mask-detail-ele">
+                                            <a href="{{ base_url }}/portfolio/portfolio{{ config.system.param_sep }}{{ tax|e('url') }}" class="btn btn-line-xs btn-white-line">View {{ tax }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Shop item images -->
+
+                            <!-- Shop item info -->
+                            <div class="shop-item-info">
+                                <a href="{{ base_url }}/portfolio/portfolio{{ config.system.param_sep }}{{ tax|e('url') }}">
+                                    <h6 class="shop-item-name">{{ tax }}</h6>
+                                </a>
+
+                            </div>
+                            <!-- Shop item info -->
+                        </div>
+                    </div>
+    {% endfor %}
+                </div>
+            </div>
+        </section>
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+                

@@ -1,0 +1,59 @@
+{% extends 'partials/base.html.twig' %}
+{% block content %}
+
+{% if page.media.images %}
+{% set blog_image = page.media.images|first %}
+{% else %}
+{% set blog_image = page.find('/images').media['default-page.jpg'] %}
+{% endif %}
+
+        <section class="full-screen-intro bg-img dark-bg" style="background-image: url({{ blog_image.url }})">
+                    <div class="full-cap-wraper">
+                        <div class="content-caption light-color">
+                            <div class="container"> 
+                                <h1 class="h1">{{ page.title|replace({'-': '<br/>'}) }}</h1>
+                                 
+                                <div class="intro-scroll-down">
+                                    <a class="scroll-down" href="#about">
+                                        <span class="mouse">
+                                            <span class="mouse-dot"></span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+        <div id="about"></div>
+
+
+
+        <div class="clearfix"></div>
+
+        <section class="ptb-60 ptb-sm-80 {{ page.header.class }}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ page.content }}
+                    </div>
+                </div>
+
+                {% if page.children.visible.count > 0 %}
+                <div class="row mt-30">
+                    <div class="col-md-12">
+                        <ul class="link">
+                            {% for child in page.children.visible %}
+                            <li>
+                                <a href="{{ child.url }}">{{ child.menu }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+        </section>
+
+
+{% endblock %}

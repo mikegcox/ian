@@ -1,0 +1,35 @@
+{% if config.plugins.socialbuttons.enabled %}
+<div class="sidebar-widget">
+    {% include 'partials/socialbuttons.html.twig' with {'url' : page.url} %}
+</div>
+{% endif %}
+
+{% if config.plugins.simplesearch.enabled %}
+<div class="sidebar-widget">
+    {% include 'partials/simplesearch_searchbox.html.twig' %}
+</div>
+{% endif %}
+
+<div class="sidebar-widget">
+    {% include 'partials/special.html.twig' %}
+</div>
+
+<div>
+    <h5>The Notification List</h5>
+    <p>One afternoon at a book signing, a lady shared with me a profound statement. "The River chooses some". Those of us who were chosen, spend winters longing to get back. To help my winter longings and yours too, each winter month I enjoy sharing a computer screensaver image to help infuse a little summer warmth into your day. I also outline the latest additions to ThousandIslandsLife.com online magazine. If you would like to receive these images and updates, please add your email address to the notification list using the form below. It will not be shared elsewhere.</p>
+    <form class="contact-form" action="https://notifications.thousandislandslife.com/subscribe" method="POST" accept-charset="utf-8">
+        <div class="form-field-wrapper">
+            <input class="input-sm form-full" id="name" type="text" name="name" placeholder="Your Name">
+        </div>
+        <div class="form-field-wrapper">
+            <input class="input-sm form-full" id="email" type="email" name="email" placeholder="Email">
+        </div>
+        <div style="display:none;">
+            <label for="hp">HP</label><br/>
+            <input type="text" name="hp" id="hp"/>
+        </div>
+        <input type="hidden" name="list" value="2T9Kcfn8926u9J892RD892teCkBg"/>
+        <input type="hidden" name="subform" value="yes"/>
+        <button class="btn btn-md btn-black form-full" type="submit" id="submit" name="submit">Subscribe</button>
+    </form>
+</div>

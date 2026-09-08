@@ -1,0 +1,143 @@
+{% if page.header.header_image %}
+  {% if page.header.header_image == 'wallpaper' %}
+  {% set wallpaper_image = page.media.images[page.header.wallpaper] %}
+  {% else %}
+  {% set wallpaper_image = page.media.images[page.header.wallpaper_ipad] %}
+{% endif %}
+{% else %}
+{% set wallpaper_image = page.media.images|first %}
+{% endif %}
+
+
+                        <div class="row">
+
+                            <div class="col-md-12 blog-post-hr">
+
+                                <div class="blog-post mb-30">
+                                    <div class="post-media">
+                                        {% if truncate %}
+                                        <figure>
+                                            {{ wallpaper_image.cropResize(900,600).html('',page.title,'img-responsive') }}
+                                        </figure>
+                                        {% endif %}
+                                        
+                                    </div>
+                                    <div class="post-meta"><span>
+                                        {% for tag in page.taxonomy.author %}
+                                        {{ tag }} -
+                                        {% endfor %}
+                                        </span> 
+                                        <span>
+                                         {{ page.date|date("d") }} {{ page.date|date("M") }} {{ page.date|date("Y") }}
+                                        </span>
+                                    </div>
+                                    <div class="post-header">
+                                        <h4><a href="{{ page.url }}">{{ page.title }}</a></h4>
+                                    </div>
+                                    <div class="post-entry">
+                                        
+                                        
+
+                                    <!-- blog short preview -->
+                                    {% if page.header.continue_link is sameas(false) %}
+                                        <p>{{ page.content }}</p>
+                                        {% if not truncate %}
+                                        {% set show_prev_next = true %}
+                                        {% endif %}
+                                    {% elseif truncate and page.summary != page.content %}
+                                        {{ page.summary }}
+
+                                    {% elseif truncate %}
+                                        {% if page.summary != page.content %}
+                                            <p>{{ page.content|truncate(550) }}</p>
+                                        {% else %}
+                                            {{ page.content }}
+                                        {% endif %}
+                                    {% else %}
+                                        <p>{{ page.content }}</p>
+                                        
+                                        
+                                        <p><a href="{{ wallpaper_image.url }}">{{ wallpaper_image.cropResize(500,400).html('',page.title,'img-responsive') }}</a>
+                                        {% set show_prev_next = true %}</p>
+                                        
+                                        <p><strong><a href="{{ wallpaper_image.url }}">Download wide-angle version</a></strong></p>
+                                        {% if page.header.wallpaper_ipad %}
+                                        
+                                        <p><a href="{{ page.url }}/{{ page.header.wallpaper_ipad }}">{{ page.media.images[page.header.wallpaper_ipad].cropResize(500,400).html('',page.title,'img-responsive') }}</a></p>
+                                        <p><strong><a href="{{ page.url }}/{{ page.header.wallpaper_ipad }}">Download iPad version</a></strong></p>
+                                        {% endif %}
+
+                                        {% if page.header.rentals %}
+                                        {{ page.find("/rentals").content }}
+                                        {% endif %}
+                                        
+                                        {% if page.header.comments %}
+                                        <h2>Comments</h2>
+                                        {% for comment in page.header.comments %}
+                                        <div>
+                                        {{ comment.comment }}
+                                        <p><i>{{comment.author }} posted on: {{ comment.date }}</i></p>
+                                        </div>
+                                        <hr />
+                                        {% endfor %}
+                                        
+                                        {% else %}
+                                        <div class="comments">
+                                        {% if config.plugins.jscomments.enabled %}
+                                        {{ jscomments()|raw }}
+                                        {% endif %}    
+                                            
+                            
+                                        {% include 'partials/comments.html.twig' with {'page': page} %}
+                                        </div>
+                                        {% endif %}
+
+                            
+                                        
+                                        
+                                        
+                                    {% endif %}
+
+       
+                                    
+                                    </div>
+
+                                    {% if not show_prev_next %}
+                                    <div class="post-more-link pull-right"><a href="{{ page.url }}">Read More<i class="fa fa-long-arrow-right right"></i></a></div>
+                                    {% else %}
+                                    
+                                    <div class="item-nav">
+                                        {% if not page.isFirst %}
+                                            <a class="item-next" href="{{ page.nextSibling.url }}">
+                                            <div class="next-btn"><i class="fa fa-angle-right"></i></div>
+                                            <div class="item-next-text xs-hidden">
+                                                <h6>Next Post</h6>
+                                            </div>
+                                            </a>
+                                        {% endif %}
+
+                                        {% if not page.isLast %}
+                                            <a class="item-prev" href="{{ page.prevSibling.url }}">
+                                            <div class="prev-btn"><i class="fa fa-angle-left"></i></div>
+                                            <div class="item-prev-text xs-hidden">
+                                                <h6>Prev Post</h6>
+                                            </div>
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                                    
+                                    
+                                    
+                                </div>
+                                <hr />
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+

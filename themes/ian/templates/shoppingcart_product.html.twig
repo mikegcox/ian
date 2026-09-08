@@ -1,0 +1,33 @@
+{% extends 'partials/shoppingcart_core_base.html.twig' %}
+
+{% block content %}
+
+    {{ parent() }}
+
+        <section class="pt-100 pt-sm-60 dark-bg">
+            <div class="owl-carousel image-slider o-flow-hidden">
+                
+                <!-- loop here -->
+               {% for picture in page.header.pictures %}
+                <div class="item text-center">
+                {{ page.media[picture.picture].derivatives(320, 1000).sizes('(max-width:26em) 100vw, 50vw').html() }}
+                
+                </div>
+                {% endfor %}
+                <!-- End loop -->
+            </div>
+        </section>
+
+
+    <div class="container">
+        <div class="content-center">
+
+        
+        </div>
+        {% include 'partials/shoppingcart_core_detail_item.html.twig' %}
+    </div>
+{% endblock %}
+
+   
+
+

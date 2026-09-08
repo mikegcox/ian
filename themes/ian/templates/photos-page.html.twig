@@ -1,0 +1,57 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+
+{% set blog_image = page.media['cover.jpg'] %}
+{% if blog_image.url == '' %}
+{% set blog_image = page.media[page.header.default_image] %}
+{% endif %}
+
+        <section class="full-screen-intro bg-img dark-bg" style="background-image: url({{ blog_image.url }})">
+                    <div class="full-cap-wraper">
+                        <div class="content-caption light-color">
+                            <div class="container"> 
+                                <h1 class="h1">{{ page.title }}</h1>
+                                
+                                <div class="intro-scroll-down">
+                                    <a class="scroll-down" href="#about">
+                                        <span class="mouse">
+                                            <span class="mouse-dot"></span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+        <div id="about"></div>
+        <div class="clearfix"></div>
+
+    {{ parent() }}
+
+        <!-- Work Detail Section -->
+        <section class="ptb ptb-sm-80">
+            <div class="container">  
+
+                <div class="row container-masonry nf-col-3">
+                    {% for image in page.media.images %}
+                    {% if image.filename != 'cover.jpg' %}
+                    {% set imgtitle = image.filename|replace({'.JPG':'','.jpg':'','_':' ','-':' '}) %}
+                        <div class="nf-item spacing">
+                            <div class="item-box">
+                                <a href="{{ page.url }}/buy?picture={{ image.filename }}" title="{{ imgtitle }}">
+                                    <img src="{{ image.cropResize(800,800).url }}" alt="{{ page.title }} {{ imgtitle }}" class="item-container" />
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+
+                </div>
+
+                {{ content }}
+            </div>
+        </section>
+        <!-- End Work Detail Section -->
+
+{% endblock %}

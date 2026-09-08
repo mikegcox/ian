@@ -1,0 +1,99 @@
+enabled: true
+general:
+  currency: USD
+  default_country: CA
+  product_taxes: included
+  load_js_globally: true
+shipping:
+  methods:
+    -
+      name: 'Canada and USA will be shipped Priority Post'
+      allowed_countries:
+        - CA
+        - US
+      price: 0
+urls:
+  checkout_url: /checkout
+  save_order_url: /save_order
+  order_url: /order
+ui:
+  currency_symbol_position: before
+  remove_cents_if_zero: true
+  use_own_css: true
+  image_size_product: 400
+  image_size_cart: 50
+cart:
+  allow_editing_quantity_from_cart: true
+  timeout: 180
+  add_shipping_and_taxes_cost_to_total: false
+  maximum_total_quantity_value: 10
+  add_product_thumbnail: true
+countries:
+  -
+    name:
+      - '*'
+    allow: true
+    tax_percentage: 0
+  -
+    name:
+      - '*'
+    allow: true
+checkout_form:
+  name: checkout
+  fields:
+    -
+      type: display
+      ignore: false
+      content: PLUGIN_SHOPPINGCART.CHECKOUT_HEADLINE_YOUR_PERSONAL_DETAILS
+      markdown: '1'
+    -
+      type: text
+      validate:
+        required: 'true'
+      name: firstname
+      label: Your first and last name
+      ignore: false
+      classes: 'js__billing__firstname form-control'
+    -
+      type: email
+      validate:
+        required: 'true'
+      name: email
+      label: PLUGIN_SHOPPINGCART.CHECKOUT_EMAIL
+      ignore: false
+      classes: 'js__billing__email form-control'
+    -
+      type: select
+      validate:
+        required: 'false'
+      name: shipping_method
+      label: PLUGIN_SHOPPINGCART.CHECKOUT_CHOOSE_SHIPPING_METHOD_DESC
+      ignore: false
+      classes: 'js__shipping__method form-control'
+      id: js__shipping__method
+      outerclasses: js__checkout-choose-shipping-block
+    -
+      type: display
+      ignore: false
+      content: 'For international shipments we will notify you of the best options and costs.'
+      markdown: '1'
+    -
+      type: display
+      ignore: true
+      outerclasses: js__checkout-choose-payment-block-title
+      content: PLUGIN_SHOPPINGCART.CHECKOUT_PAYMENT_METHOD
+      markdown: '1'
+    -
+      type: select
+      name: payment_method
+      label: PLUGIN_SHOPPINGCART.CHECKOUT_CHOOSE_PAYMENT_METHOD_DESC
+      ignore: true
+      classes: 'js__payment__method form-control'
+      id: js__payment__method
+      outerclasses: js__checkout-choose-payment-block
+  buttons:
+    -
+      type: submit
+      value: PLUGIN_SHOPPINGCART.CHECKOUT_BUTTON_PAY
+      classes: 'btn btn-md btn-black'
+load_js_globally: false

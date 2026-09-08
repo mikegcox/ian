@@ -1,0 +1,14 @@
+
+        <div class="container" style="padding-top:30px">
+            <div class="row featured-box-minimal">
+            
+                {% for highlight in page.header.highlight %}
+                <div class="col-md-3 col-sm-6">
+                    <h4><i class="fa fa-{{ highlight.icon }}"></i>{{ highlight.header }}</h4>
+                    <p><a href="{{ highlight.url }}">{{ highlight.text }}</a></p>
+                </div>
+                {% endfor %}
+                
+
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->

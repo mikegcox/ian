@@ -1,0 +1,44 @@
+        <!-- Work Section -->
+        <section id="work" class="wow fadeInUp pt pt-sm-80 text-center">
+            <div class="container">
+                <h3>Great Work</h3>
+                <div class="spacer-30"></div>
+                <!-- work Filter -->
+                <div class="row">
+                    <ul class="container-filter categories-filter">
+                         <li><a class="categories active" data-filter="*">All</a></li>                       
+                        {% for book in page.header.books %}
+                        <li><a class="categories" data-filter=".{{ book.bookname }}">{{ book.bookname }}</a></li>
+                        {% endfor %}
+                        
+                    </ul>
+                </div>
+                <!-- End work Filter -->
+            </div>
+            <!-- Work Gallary -->
+            <div class="container-fluid ">
+                <div class="row">
+                    <div class="container-grid nf-col-4">
+                        {% for book in page.header.books %}
+                        <div class="nf-item branding design {{ book.bookname }}">
+                            <div class="item-box">
+                                <a class="cbox-gallary1" href="img/portfolio/1.jpg" title="Consequat massa quis">
+                                    <img class="item-container" src="img/portfolio/1.jpg" alt="1" />
+                                    <div class="item-mask">
+                                        <div class="item-caption">
+                                            <h5 class="white">{{ book.bookname }}</h5>
+                                            <p class="white">Branding, Design, Coffee</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+            <!-- End Work Gallary -->
+        </section>
+        <!-- End Work Section -->

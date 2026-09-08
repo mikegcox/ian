@@ -10,3 +10,5 @@ tmp/
 *.gif
 *.webp
 .DS_Store
+*.zip
+Thumbs.db

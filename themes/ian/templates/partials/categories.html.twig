@@ -1,0 +1,14 @@
+{% set taxlist = taxonomylist.get() %}
+
+{% if taxlist %}
+
+<ul>
+    {% for tax,value in taxlist[taxonomy] %}
+    <li>
+        <a href="{{ base_url }}/wallpapers/category{{ config.system.param_sep }}{{ tax|e('url') }}">
+        {{ tax }}
+        </a> 
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
