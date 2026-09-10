@@ -1,34 +1,37 @@
 <!-- Art Showcase Carousel -->
 <section class="wow fadeIn ptb-60 ptb-sm-80 {{ page.header.class }}">
-    <div class="container">
-        {% if page.title and not page.header.hide_title %}
-        <h2 class="text-center pb-60 no-transform">{{ page.title }}</h2>
-        {% endif %}
-        <div class="row">
-            <div class="col-md-12">
-                <div class="owl-carousel image-slider o-flow-hidden art-showcase-slider">
-                    {% for slide in page.header.slides %}
-                    <div class="item">
-                        <img class="img-responsive center-block" src="{{ page.media[slide.image].cropResize(1600, 1200).url }}" alt="{{ slide.caption|default('') }}" />
-                        <div class="art-showcase-caption hidden">
-                            <p>{{ slide.caption }}</p>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-        {% if page.content %}
-        <div class="row mt-30">
-            <div class="col-md-8 col-md-offset-2">
-                {{ page.content }}
-            </div>
-        </div>
-        {% endif %}
-    </div>
+<div class="container">
+{% if page.title and not page.header.hide_title %}
+<h2 class="text-center pb-60 no-transform">{{ page.title }}</h2>
+{% endif %}
+
+{% if page.content %}
+<div class="row mb-30">
+<div class="col-md-8 col-md-offset-2">
+{{ page.content }}
+</div>
+</div>
+{% endif %}
+
+<div class="row">
+<div class="col-md-12">
+<div class="owl-carousel image-slider o-flow-hidden art-showcase-slider">
+{% for slide in page.header.slides %}
+<div class="item">
+<img class="img-responsive center-block" src="{{ page.media[slide.image].cropResize(1600, 1200).url }}" alt="{{ slide.caption|default('') }}" />
+<div class="art-showcase-caption hidden">
+<p>{{ slide.caption }}</p>
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+</div>
+
+</div>
 </section>
 <!-- End Art Showcase Carousel -->
 
 {% block bottom %}
-    {% do assets.addJs('theme://js/plugin/owl.carousel.min.js', {'priority':69, 'group':'bottom'}) %}
+{% do assets.addJs('theme://js/plugin/owl.carousel.min.js', {'priority':69, 'group':'bottom'}) %}
 {% endblock %}
