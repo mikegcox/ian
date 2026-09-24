@@ -1,5 +1,5 @@
 ---
-title: Portfolio
+title: Art
 menu_small: null
 metadata:
     description: 'Thousand Islands Photos'
