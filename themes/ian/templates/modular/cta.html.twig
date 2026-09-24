@@ -28,7 +28,7 @@
                                 </a>
                                     <div class="team-item-info">
                                         <h5>{{ item.heading }}</h5>
-                                        <p class=""><a href="{{ item.url }}">{{ item.link_text }}</a></p>
+                                        <a href="{{ item.url }}" class="btn btn-md btn-black-line mt-15">{{ item.link_text|default('Shop Now') }}</a>
                                     </div>
                             </div>
                         </div>
