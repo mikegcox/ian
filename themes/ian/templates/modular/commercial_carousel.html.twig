@@ -6,21 +6,22 @@
 {% endif %}
 
 {% if page.content %}
-<div class="row">
+<div class="row text-center">
 <div class="col-md-8 col-md-offset-2">
 {{ page.content }}
 </div>
 </div>
+<div class="spacer-30"></div>
 {% endif %}
 
 {% if page.header.cta_1_url or page.header.cta_2_url %}
-<div class="row mb-30">
+<div class="row mb-60">
 <div class="col-md-8 col-md-offset-2 text-center">
 {% if page.header.cta_1_url %}
 <a href="{{ page.header.cta_1_url }}" class="btn btn-md btn-black">{{ page.header.cta_1_text|default('Learn More') }}</a>
 {% endif %}
 {% if page.header.cta_2_url %}
-<a href="{{ page.header.cta_2_url }}" class="btn btn-md btn-default">{{ page.header.cta_2_text|default('Contact Us') }}</a>
+<a href="{{ page.header.cta_2_url }}" class="btn btn-md btn-black-line">{{ page.header.cta_2_text|default('Contact Us') }}</a>
 {% endif %}
 </div>
 </div>
