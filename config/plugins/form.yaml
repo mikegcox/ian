@@ -11,5 +11,5 @@ files:
   accept:
     - 'image/*'
 recaptcha:
-  site_key: 
-  secret_key: 
+  site_key: 6LdsMhsUAAAAAG-YcwVaREYJ9tP9X6B-4aa6VSDU
+  secret_key: 6LdsMhsUAAAAAKjgJ0hepCnnTgbq9SeBJrnmhWpH

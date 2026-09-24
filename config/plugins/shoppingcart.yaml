@@ -51,7 +51,7 @@ checkout_form:
       validate:
         required: 'true'
       name: firstname
-      label: Your first and last name
+      label: 'Your first and last name'
       ignore: false
       classes: 'js__billing__firstname form-control'
     -

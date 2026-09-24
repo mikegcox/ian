@@ -9,8 +9,8 @@ mailer:
     server: email-smtp.us-east-1.amazonaws.com
     port: 587
     encryption: tls
-    user: 
-    password: 
+    user: AKIAZIXK3TLEVGIWPZMX
+    password: BJHn5Z3BtRHZgOa03j602ielvnbd3UBmNlPLKPTHsy6P
   sendmail:
     bin: /usr/sbin/sendmail
 content_type: text/html
